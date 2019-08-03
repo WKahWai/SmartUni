@@ -1,0 +1,53 @@
+﻿@model IEnumerable<SmartUni.Models.Class>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ClassDesc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudyLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tutor)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClassDesc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudyLevel.StudyLevelDesc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tutor.TutorId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ClassId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ClassId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ClassId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
