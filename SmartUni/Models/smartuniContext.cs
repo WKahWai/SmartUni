@@ -27,6 +27,7 @@ namespace SmartUni.Models
         public virtual DbSet<Tutor> Tutor { get; set; }
         public virtual DbSet<TutorStatus> TutorStatus { get; set; }
         public virtual DbSet<TutorType> TutorType { get; set; }
+        public virtual DbSet<ClassStudentList> ClassStudentList { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -228,6 +229,10 @@ namespace SmartUni.Models
                 entity.Property(e => e.Email)
                     .IsRequired()
                     .HasMaxLength(80)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PhoneNo)
+                    .IsRequired()
                     .IsUnicode(false);
 
                 entity.Property(e => e.TutorName)

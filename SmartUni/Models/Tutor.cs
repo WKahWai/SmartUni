@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace SmartUni.Models
 {
@@ -11,11 +13,24 @@ namespace SmartUni.Models
             Subject = new HashSet<Subject>();
         }
 
+        [DisplayName("Tutor ID")]
         public int TutorId { get; set; }
+
+        [Required]
+        [DisplayName("Tutor Name")]
         public string TutorName { get; set; }
+        [Required]
+        [DisplayName("Email")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
+        [Required]
+        [DisplayName("Contact No.")]
         public int PhoneNo { get; set; }
+        [Required]
+        [DisplayName("Tutor Status")]
         public int TutorStatusId { get; set; }
+        [Required]
+        [DisplayName("Tutor Type")]
         public int TutorTypeId { get; set; }
 
         public virtual TutorStatus TutorStatus { get; set; }

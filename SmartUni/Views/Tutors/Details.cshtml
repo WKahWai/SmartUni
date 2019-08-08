@@ -41,6 +41,33 @@
             @Html.DisplayFor(model => model.TutorType.TutorTypeDesc)
         </dd>
     </dl>
+    <table id="simple-table" class="table  table-bordered table-hover col-md-6">
+        <thead>
+            <tr>
+                <th class="center col-md-2">Subject ID</th>
+                <th class="col-md-4">Subject Name</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @{
+                List<Subject> SubjectList = ViewBag.SubjectList;
+
+                foreach (var subject in SubjectList)
+                {
+                    <tr>
+                        <td class="center">
+                            <label class="pos-rel">@subject.SubjectId</label>
+                        </td>
+
+                        <td>
+                            <a href="#">@subject.SubjectName</a>
+                        </td>
+                    </tr>
+                }
+            }
+         </tbody>
+    </table>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.TutorId">Edit</a> |

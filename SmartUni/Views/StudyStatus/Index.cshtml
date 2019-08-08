@@ -1,15 +1,18 @@
 ﻿@model IEnumerable<SmartUni.Models.StudyStatus>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Study Status";
 }
 
-<h2>Index</h2>
+<h2>Study Status</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <button class="btn btn-info" onclick="location.href='@Url.Action("Create", "StudyStatus")'">
+        <i class="ace-icon fa glyphicon-plus bigger-110"></i>
+        Create New
+    </button>
 </p>
-<table class="table">
+<table id="simple-table" class="table  table-bordered table-hover col-md-6">
     <thead>
         <tr>
             <th>

@@ -21,18 +21,18 @@ namespace SmartUni.Controllers
 
         [HttpGet]
         // GET: ExamSubjects
-        public async Task<IActionResult> Index([FromQuery(Name = "examId")]int examId, [FromQuery(Name = "classId")]string classId, [FromQuery(Name = "subjectId")]int subjectId)
+        public async Task<IActionResult> Index([FromQuery(Name = "examId")]int examId, [FromQuery(Name = "classId")]int classId, [FromQuery(Name = "subjectId")]int subjectId)
         {
             ViewData["ExamList"] = SetSelected.SetSelectedValue(new SelectList(_context.Exam, "ExamId", "ExamDesc"), examId.ToString());
-            ViewData["ClassList"] = SetSelected.SetSelectedValue(new SelectList(_context.Class, "ClassId", "ClassDesc"), classId);
+            ViewData["ClassList"] = SetSelected.SetSelectedValue(new SelectList(_context.Class, "ClassId", "ClassDesc"), classId.ToString());
 
-            if (examId > 0 || classId != null)
+            if (classId != 0)
             {
                 var subjectList = (from es in _context.ExamSubject
                                    join ss in _context.StudentSubject on es.StudSubjectId equals ss.StudSubjectId
                                    join sj in _context.Subject on ss.SubjectId equals sj.SubjectId
                                    join s in _context.Student on ss.StudId equals s.StudId
-                                   where es.ExamId == examId && s.ClassId == int.Parse(classId)
+                                   where es.ExamId == examId && s.ClassId == classId
                                    select new
                                    {
                                        SubjectId = ss.SubjectId,
@@ -46,7 +46,7 @@ namespace SmartUni.Controllers
                                             join ss in _context.StudentSubject on es.StudSubjectId equals ss.StudSubjectId
                                             join sj in _context.Subject on ss.SubjectId equals sj.SubjectId
                                             join s in _context.Student on ss.StudId equals s.StudId
-                                            where es.ExamId == examId && s.ClassId == int.Parse(classId) && sj.SubjectId == subjectId
+                                            where es.ExamId == examId && s.ClassId == classId && sj.SubjectId == subjectId
                                             select new ExamStudentList
                                             {
                                                 StudId = ss.StudId,

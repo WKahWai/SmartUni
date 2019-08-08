@@ -27,9 +27,9 @@ namespace SmartUni.Controllers
         }
 
         // GET: Students/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
+            if (id.Equals(null))
             {
                 return NotFound();
             }
@@ -79,9 +79,9 @@ namespace SmartUni.Controllers
         }
 
         // GET: Students/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
+            if (id.Equals(null))
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace SmartUni.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("StudId,StudName,Email,PhoneNo,StudyStatusId,ClassId")] Student student)
+        public async Task<IActionResult> Edit(int id, [Bind("StudId,StudName,Email,PhoneNo,StudyStatusId,ClassId")] Student student)
         {
             if (!(id.Equals(student.StudId)))
             {
@@ -118,7 +118,7 @@ namespace SmartUni.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StudentExists(student.StudId.ToString()))
+                    if (!StudentExists(student.StudId))
                     {
                         return NotFound();
                     }
@@ -135,9 +135,9 @@ namespace SmartUni.Controllers
         }
 
         // GET: Students/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
+            if (id.Equals(null))
             {
                 return NotFound();
             }
@@ -157,7 +157,7 @@ namespace SmartUni.Controllers
         // POST: Students/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var student = await _context.Student.FindAsync(id);
             _context.Student.Remove(student);
@@ -165,7 +165,7 @@ namespace SmartUni.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool StudentExists(string id)
+        private bool StudentExists(int id)
         {
             return _context.Student.Any(e => e.StudId.Equals(id));
         }

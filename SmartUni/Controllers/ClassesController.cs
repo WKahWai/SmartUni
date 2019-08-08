@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -32,9 +33,9 @@ namespace SmartUni.Controllers
         }
 
         // GET: Classes/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
+            if (id.Equals(null))
             {
                 return NotFound();
             }
@@ -43,6 +44,10 @@ namespace SmartUni.Controllers
                 .Include(@a => @a.StudyLevel)
                 .Include(@b => @b.Tutor)
                 .FirstOrDefaultAsync(m => m.ClassId.Equals(id));
+
+            var classId = new SqlParameter("@ClassId", id);
+            ViewData["StudentList"] = _context.ClassStudentList.FromSql("EXEC GetStudentsByClassId @ClassId", classId).ToList();
+
             if (@class == null)
             {
                 return NotFound();
@@ -55,7 +60,7 @@ namespace SmartUni.Controllers
         public IActionResult Create()
         {
             ViewData["StudyLevelId"] = new SelectList(_context.StudyLevel, "StudyLevelId", "StudyLevelDesc");
-            ViewData["TutorId"] = new SelectList(_context.Tutor, "TutorId", "TutorId");
+            ViewData["TutorId"] = new SelectList(_context.Tutor, "TutorId", "TutorName");
             return View();
         }
 

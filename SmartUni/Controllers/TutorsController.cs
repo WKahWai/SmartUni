@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,11 @@ namespace SmartUni.Controllers
             return View(await smartUniContext.ToListAsync());
         }
 
+        public IActionResult Settings()
+        {
+            return View();
+        }
+
         // GET: Tutors/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -37,6 +43,10 @@ namespace SmartUni.Controllers
                 .Include(t => t.TutorStatus)
                 .Include(t => t.TutorType)
                 .FirstOrDefaultAsync(m => m.TutorId == id);
+
+            var tutorId = new SqlParameter("@TutorId", id);
+            ViewData["SubjectList"] = _context.Subject.FromSql("EXEC GetSubjectsByTutorId @TutorId", tutorId).ToList();
+
             if (tutor == null)
             {
                 return NotFound();

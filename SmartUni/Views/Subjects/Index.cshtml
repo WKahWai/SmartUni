@@ -1,15 +1,18 @@
 ﻿@model IEnumerable<SmartUni.Models.Subject>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Subjects";
 }
 
-<h2>Index</h2>
+<h2>Subjects</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <button class="btn btn-info" onclick="location.href='@Url.Action("Create", "Subjects")'">
+        <i class="ace-icon fa glyphicon-plus bigger-110"></i>
+        Create New
+    </button>
 </p>
-<table class="table">
+<table id="simple-table" class="table  table-bordered table-hover col-md-6">
     <thead>
         <tr>
             <th>
@@ -24,13 +27,13 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            <td class="col-md-5">
                 @Html.DisplayFor(modelItem => item.SubjectName)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tutor.TutorId)
+            <td class="col-md-5">
+                @Html.DisplayFor(modelItem => item.Tutor.TutorName)
             </td>
-            <td>
+            <td class="col-md-2">
                 <a asp-action="Edit" asp-route-id="@item.SubjectId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.SubjectId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.SubjectId">Delete</a>

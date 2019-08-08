@@ -13,6 +13,9 @@
         <dt>
             @Html.DisplayNameFor(model => model.ClassId)
         </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClassId)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.ClassDesc)
         </dt>
@@ -38,6 +41,37 @@
             @Html.DisplayFor(model => model.Tutor.TutorId)
         </dd>
     </dl>
+    <table id="simple-table" class="table  table-bordered table-hover col-md-6">
+        <thead>
+            <tr>
+                <th class="center col-md-1">Student ID</th>
+                <th class="col-md-6">Student Name</th>
+                <th class="center col-md-3">Study Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @{
+                List<ClassStudentList> StudentList = ViewBag.StudentList;
+
+                foreach (var student in StudentList)
+                {
+                        <tr>
+                            <td class="center">
+                                <label class="pos-rel">@student.StudId</label>
+                            </td>
+
+                            <td>
+                                <a href="/Students/Details/@student.StudId">@student.StudName</a>
+                            </td>
+                            <td  class="center">
+                                <label class="pos-rel">@student.StudyStatusDesc</label>
+</td>
+                        </tr>
+                }
+            }
+        </tbody>
+    </table>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.ClassId">Edit</a> |

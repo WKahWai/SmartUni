@@ -1,15 +1,18 @@
 ﻿@model IEnumerable<SmartUni.Models.Tutor>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Tutors";
 }
 
-<h2>Index</h2>
+<h2>Tutors</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <button class="btn btn-info" onclick="location.href='@Url.Action("Create", "Tutors")'">
+        <i class="ace-icon fa glyphicon-plus bigger-110"></i>
+        Create New
+    </button>
 </p>
-<table class="table">
+<table id="simple-table" class="table  table-bordered table-hover col-md-6">
     <thead>
         <tr>
             <th>
@@ -22,10 +25,10 @@
                 @Html.DisplayNameFor(model => model.PhoneNo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TutorStatus)
+                @Html.DisplayNameFor(model => model.TutorStatusId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TutorType)
+                @Html.DisplayNameFor(model => model.TutorTypeId)
             </th>
             <th></th>
         </tr>
