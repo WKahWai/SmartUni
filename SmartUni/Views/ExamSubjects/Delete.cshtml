@@ -1,0 +1,46 @@
+﻿@model SmartUni.Models.ExamSubject
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ExamSubject</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Mark)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mark)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Grade)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Grade)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Exam)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Exam.ExamDesc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StudSubject)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StudSubject.StudId)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ExamId" />
+        <input type="hidden" asp-for="StudSubjectId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

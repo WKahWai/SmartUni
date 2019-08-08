@@ -10,10 +10,10 @@ namespace SmartUni.Models
             Student = new HashSet<Student>();
         }
 
-        public string ClassId { get; set; }
+        public int ClassId { get; set; }
         public string ClassDesc { get; set; }
         public int StudyLevelId { get; set; }
-        public string TutorId { get; set; }
+        public int TutorId { get; set; }
         public int Year { get; set; }
 
         public virtual StudyLevel StudyLevel { get; set; }

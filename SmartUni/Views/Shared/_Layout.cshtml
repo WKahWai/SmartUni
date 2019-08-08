@@ -57,7 +57,7 @@
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     <small>
                         <i class="fa fa-leaf"></i>
-                        Ace Admin
+                        SmartUni 智联
                     </small>
                 </a>
             </div>
@@ -71,7 +71,7 @@
             try { ace.settings.loadState('main-container') } catch (e) { }
         </script>
 
-        <div id="sidebar" class="sidebar                  responsive                    ace-save-state">
+        <div id="sidebar" class="sidebar responsive ace-save-state">
             <script type="text/javascript">
                 try { ace.settings.loadState('sidebar') } catch (e) { }
             </script>
@@ -86,7 +86,7 @@
                     <b class="arrow"></b>
                 </li>
 
-                <!-- First List Item -->
+                <!-- First List Item : Tutor -->
                 <li class="">
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-desktop"></i>
@@ -101,28 +101,27 @@
 
                     <ul class="submenu">
                         <li class="">
-                            <a href="#" class="dropdown-toggle">
+                            <a asp-area="" asp-controller="Tutors" asp-action="Create">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Layouts
-                                <b class="arrow fa fa-angle-down"></b>
+                                Add new tutor
                             </a>
 
                             <b class="arrow"></b>
                         </li>
 
                         <li class="">
-                            <a href="typography.html">
+                            <a asp-area="" asp-controller="Tutors" asp-action="Index">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Typography
+                                Manage tutors
                             </a>
 
                             <b class="arrow"></b>
                         </li>
 
                         <li class="">
-                            <a href="elements.html">
+                            <a asp-area="" asp-controller="Tutors" asp-action="Settings">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Elements
+                                Manage settings
                             </a>
 
                             <b class="arrow"></b>
@@ -130,7 +129,7 @@
                     </ul>
                 </li>
 
-                <!-- Second List Item -->
+                <!-- Second List Item : Class -->
                 <li class="">
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-desktop"></i>
@@ -145,18 +144,27 @@
 
                     <ul class="submenu">
                         <li class="">
-                            <a asp-area="" asp-controller="Classes" asp-action="Index">
+                            <a asp-area="" asp-controller="Classes" asp-action="Create">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                List classes
+                                Add a new class
                             </a>
 
                             <b class="arrow"></b>
                         </li>
 
                         <li class="">
-                            <a asp-area="" asp-controller="Classes" asp-action="Create">
+                            <a asp-area="" asp-controller="Classes" asp-action="Index">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Register a class
+                                Manage classes
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a asp-area="" asp-controller="Classes" asp-action="Settings">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Manage settings
                             </a>
 
                             <b class="arrow"></b>
@@ -164,7 +172,41 @@
                     </ul>
                 </li>
 
-                <!-- Third List Item -->
+                <!-- Third List Item : Subject -->
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-desktop"></i>
+                        <span class="menu-text">
+                            Subject
+                        </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+
+                    <ul class="submenu">
+                        <li class="">
+                            <a asp-area="" asp-controller="Subjects" asp-action="Create">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Add a new subject
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a asp-area="" asp-controller="Subjects" asp-action="Index">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Manage subjects
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Forth List Item : Student -->
                 <li class="">
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-desktop"></i>
@@ -179,28 +221,27 @@
 
                     <ul class="submenu">
                         <li class="">
-                            <a href="#" class="dropdown-toggle">
+                            <a asp-area="" asp-controller="Students" asp-action="Create">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Layouts
-                                <b class="arrow fa fa-angle-down"></b>
+                                Add a new student
                             </a>
 
                             <b class="arrow"></b>
                         </li>
 
                         <li class="">
-                            <a href="typography.html">
+                            <a asp-area="" asp-controller="Students" asp-action="Index">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Typography
+                                Manage students
                             </a>
 
                             <b class="arrow"></b>
                         </li>
 
                         <li class="">
-                            <a href="elements.html">
+                            <a asp-area="" asp-controller="Students" asp-action="Settings">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Elements
+                                Manage settings
                             </a>
 
                             <b class="arrow"></b>
@@ -208,7 +249,7 @@
                     </ul>
                 </li>
 
-                <!-- Forth List Item -->
+                <!-- Fifth List Item : Examination -->
                 <li class="">
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-desktop"></i>
@@ -223,28 +264,18 @@
 
                     <ul class="submenu">
                         <li class="">
-                            <a href="#" class="dropdown-toggle">
+                            <a asp-area="" asp-controller="Exams" asp-action="Create">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Layouts
-                                <b class="arrow fa fa-angle-down"></b>
+                                Add a new exam
                             </a>
 
                             <b class="arrow"></b>
                         </li>
 
                         <li class="">
-                            <a href="typography.html">
+                            <a asp-area="" asp-controller="Exams" asp-action="Index">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Typography
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="elements.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Elements
+                                Manage exams
                             </a>
 
                             <b class="arrow"></b>

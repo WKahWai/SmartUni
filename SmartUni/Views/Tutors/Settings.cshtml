@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "Settings";
+}
+
+<h2>Settings</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Item
+            </th>
+            <th>
+                Link
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                Tutor Status
+            </td>
+            <td>
+                <a asp-controller="TutorStatus" asp-action="Index">Go</a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Tutor Type
+            </td>
+            <td>
+                <a asp-controller="TutorTypes" asp-action="Index">Go</a>
+            </td>
+        </tr>
+    </tbody>
+    </table>

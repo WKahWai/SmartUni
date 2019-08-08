@@ -1,0 +1,95 @@
+﻿@model SmartUni.Models.ExamSubjectList
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Index">Create New</a>
+</p>
+<form asp-action="ModifyMark">
+    <div class="row">
+        <div class="col-md-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label"></label>
+                <select asp-for="ExamId" id="examId" class="form-control" asp-items="ViewBag.ExamList"></select>
+            </div>
+            <div class="form-group">
+                <label id="" class="control-label"></label>
+                <select id="classId" class="form-control" asp-items="ViewBag.ClassList"><option value="">Pick one</option></select>
+            </div>
+            <div class="form-group">
+                <label id="" class="control-label"></label>
+                <select id="subjectId" class="form-control" asp-items="ViewBag.SubjectList"><option value="">Pick one</option></select>
+            </div>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Mark
+                </th>
+                <th>
+                    Grade
+                </th>
+                <th>
+                    Exam
+                </th>
+                <th>
+                    StudSubject
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.StudentList != null)
+            {
+                var count = 0;
+                @foreach (var item in ViewData["StudentList"] as List<ExamStudentList>)
+                {
+                    <tr>
+                        <td>
+                            @item.StudName
+                        </td>
+                        <td>
+                            <input asp-for="@Model.ExamSubjectListing[count].ExamId" class="form-control" type="hidden" value="@item.ExamId" />
+                            <input asp-for="@Model.ExamSubjectListing[count].StudSubjectId" class="form-control" type="hidden" value="@item.StudSubjectId" />
+                            <input id="input-@item.StudSubjectId" asp-for="@Model.ExamSubjectListing[count].Mark" class="form-control" value="@item.Mark"  onchange="assignGrade(@item.Mark, null, @item.StudSubjectId)" disabled="@(item.Mark >= 0 ? "disabled" : null)"/>
+                        </td>
+                        <td>
+                            <input asp-for="@Model.ExamSubjectListing[count].Grade" class="form-control no-border" value="@item.Grade" disabled="disabled"/>
+                        </td>
+                        <td>
+                            <a name="edit" id=@item.StudSubjectId onclick="enableEdit(@item.StudSubjectId)">Edit</a>
+                        </td>
+                    </tr>
+                    count++;
+                }
+            }
+        </tbody>
+    </table>
+    <div class="form-group">
+        <input type="submit" value="Submit" class="btn btn-default" />
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+         function enableEdit(id)
+        {
+            $("#input-" + id).removeAttr("disabled");
+        }
+        $("#subjectId").on("change", function () {
+             window.location.href = '@Url.Action("Index", "ExamSubjects")' + '?examId=' + $("#examId").val() + '&classId=' + $("#classId").val() + '&subjectId=' + $(this).val();
+        });
+        $("#classId").on("change", function () {
+             window.location.href = '@Url.Action("Index", "ExamSubjects")' + '?examId=' + $("#examId").val() + '&classId=' + $(this).val();
+        });
+   
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

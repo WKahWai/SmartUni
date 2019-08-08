@@ -11,7 +11,7 @@ namespace SmartUni.Models
             Subject = new HashSet<Subject>();
         }
 
-        public string TutorId { get; set; }
+        public int TutorId { get; set; }
         public string TutorName { get; set; }
         public string Email { get; set; }
         public int PhoneNo { get; set; }

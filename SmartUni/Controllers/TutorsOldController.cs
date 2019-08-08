@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -9,29 +10,29 @@ using SmartUni.Models;
 
 namespace SmartUni.Controllers
 {
-    public class ClassesController : Controller
+    public class TutorsOldController : Controller
     {
         private readonly SmartUniContext _context;
 
-        public ClassesController(SmartUniContext context)
+        public TutorsOldController(SmartUniContext context)
         {
             _context = context;
         }
 
-        // GET: Classes
+        // GET: Tutors
         public async Task<IActionResult> Index()
         {
-            var smartUniContext = _context.Class.Include(@a => @a.StudyLevel).Include(@b => @b.Tutor);
+            var smartUniContext = _context.Tutor.Include(t => t.TutorStatus).Include(t => t.TutorType);
             return View(await smartUniContext.ToListAsync());
         }
 
-        // GET: Classes/Settings
+        // GET: Tutors/Settings
         public IActionResult Settings()
         {
             return View();
         }
 
-        // GET: Classes/Details/5
+        // GET: Tutors/Details/5
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -39,45 +40,45 @@ namespace SmartUni.Controllers
                 return NotFound();
             }
 
-            var @class = await _context.Class
-                .Include(@a => @a.StudyLevel)
-                .Include(@b => @b.Tutor)
-                .FirstOrDefaultAsync(m => m.ClassId.Equals(id));
-            if (@class == null)
+            var tutor = await _context.Tutor
+                .Include(t => t.TutorStatus)
+                .Include(t => t.TutorType)
+                .FirstOrDefaultAsync(m => m.TutorId.Equals(id));
+            if (tutor == null)
             {
                 return NotFound();
             }
 
-            return View(@class);
+            return View(tutor);
         }
 
-        // GET: Classes/Create
+        // GET: Tutors/Create
         public IActionResult Create()
         {
-            ViewData["StudyLevelId"] = new SelectList(_context.StudyLevel, "StudyLevelId", "StudyLevelDesc");
-            ViewData["TutorId"] = new SelectList(_context.Tutor, "TutorId", "TutorId");
+            ViewData["TutorStatusId"] = new SelectList(_context.TutorStatus, "TutorStatusId", "TutorStatusDesc");
+            ViewData["TutorTypeId"] = new SelectList(_context.TutorType, "TutorTypeId", "TutorTypeDesc");
             return View();
         }
 
-        // POST: Classes/Create
+        // POST: Tutors/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ClassId,ClassDesc,StudyLevelId,TutorId,Year")] Class @class)
+        public async Task<IActionResult> Create([Bind("TutorName,Email,PhoneNo,TutorStatusId,TutorTypeId")] Tutor tutor)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(@class);
+                _context.Add(tutor);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StudyLevelId"] = new SelectList(_context.StudyLevel, "StudyLevelId", "StudyLevelDesc", @class.StudyLevelId);
-            ViewData["TutorId"] = new SelectList(_context.Tutor, "TutorId", "TutorId", @class.TutorId);
-            return View(@class);
+            ViewData["TutorStatusId"] = new SelectList(_context.TutorStatus, "TutorStatusId", "TutorStatusDesc", tutor.TutorStatusId);
+            ViewData["TutorTypeId"] = new SelectList(_context.TutorType, "TutorTypeId", "TutorTypeDesc", tutor.TutorTypeId);
+            return View(tutor);
         }
 
-        // GET: Classes/Edit/5
+        // GET: Tutors/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -85,24 +86,24 @@ namespace SmartUni.Controllers
                 return NotFound();
             }
 
-            var @class = await _context.Class.FindAsync(id);
-            if (@class == null)
+            var tutor = await _context.Tutor.FindAsync(id);
+            if (tutor == null)
             {
                 return NotFound();
             }
-            ViewData["StudyLevelId"] = new SelectList(_context.StudyLevel, "StudyLevelId", "StudyLevelDesc", @class.StudyLevelId);
-            ViewData["TutorId"] = new SelectList(_context.Tutor, "TutorId", "TutorId", @class.TutorId);
-            return View(@class);
+            ViewData["TutorStatusId"] = new SelectList(_context.TutorStatus, "TutorStatusId", "TutorStatusDesc", tutor.TutorStatusId);
+            ViewData["TutorTypeId"] = new SelectList(_context.TutorType, "TutorTypeId", "TutorTypeDesc", tutor.TutorTypeId);
+            return View(tutor);
         }
 
-        // POST: Classes/Edit/5
+        // POST: Tutors/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("ClassId,ClassDesc,StudyLevelId,TutorId,Year")] Class @class)
+        public async Task<IActionResult> Edit(string id, [Bind("TutorId,TutorName,Email,PhoneNo,TutorStatusId,TutorTypeId")] Tutor tutor)
         {
-            if (!(id.Equals(@class.ClassId)))
+            if (!(id.Equals(tutor.TutorId)))
             {
                 return NotFound();
             }
@@ -111,12 +112,12 @@ namespace SmartUni.Controllers
             {
                 try
                 {
-                    _context.Update(@class);
+                    _context.Update(tutor);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClassExists(@class.ClassId.ToString()))
+                    if (!TutorExists(tutor.TutorId.ToString()))
                     {
                         return NotFound();
                     }
@@ -127,12 +128,12 @@ namespace SmartUni.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StudyLevelId"] = new SelectList(_context.StudyLevel, "StudyLevelId", "StudyLevelDesc", @class.StudyLevelId);
-            ViewData["TutorId"] = new SelectList(_context.Tutor, "TutorId", "TutorId", @class.TutorId);
-            return View(@class);
+            ViewData["TutorStatusId"] = new SelectList(_context.TutorStatus, "TutorStatusId", "TutorStatusDesc", tutor.TutorStatusId);
+            ViewData["TutorTypeId"] = new SelectList(_context.TutorType, "TutorTypeId", "TutorTypeDesc", tutor.TutorTypeId);
+            return View(tutor);
         }
 
-        // GET: Classes/Delete/5
+        // GET: Tutors/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -140,32 +141,32 @@ namespace SmartUni.Controllers
                 return NotFound();
             }
 
-            var @class = await _context.Class
-                .Include(@a => @a.StudyLevel)
-                .Include(@b => @b.Tutor)
-                .FirstOrDefaultAsync(m => m.ClassId.Equals(id));
-            if (@class == null)
+            var tutor = await _context.Tutor
+                .Include(t => t.TutorStatus)
+                .Include(t => t.TutorType)
+                .FirstOrDefaultAsync(m => m.TutorId.Equals(id));
+            if (tutor == null)
             {
                 return NotFound();
             }
 
-            return View(@class);
+            return View(tutor);
         }
 
-        // POST: Classes/Delete/5
+        // POST: Tutors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var @class = await _context.Class.FindAsync(id);
-            _context.Class.Remove(@class);
+            var tutor = await _context.Tutor.FindAsync(id);
+            _context.Tutor.Remove(tutor);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ClassExists(string id)
+        private bool TutorExists(string id)
         {
-            return _context.Class.Any(e => e.ClassId.Equals(id));
+            return _context.Tutor.Any(e => e.TutorId.Equals(id));
         }
     }
 }

@@ -1,0 +1,38 @@
+﻿@model SmartUni.Models.Exam
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Exam</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ExamDesc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ExamDesc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ExamYear)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ExamYear)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ExamTerm)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ExamTerm)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-controller="ExamSubjects" asp-action="Create" asp-route-id="@Model.ExamId"><input id="btnAdd" type="button" value="Add student" class="btn btn-default" /></a>
+    <a asp-controller="ExamSubjects" asp-action="Index" asp-route-examId="@Model.ExamId"><input id="btnAdd" type="button" value="Add student" class="btn btn-default" /></a>
+    <a asp-action="Edit" asp-route-id="@Model.ExamId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+using EntityFrameworkCore.Extensions;
 
 namespace SmartUni.Models
 {
@@ -48,7 +48,7 @@ namespace SmartUni.Models
                 entity.Property(e => e.ClassId)
                     .HasMaxLength(10)
                     .IsUnicode(false)
-                    .ValueGeneratedNever();
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.ClassDesc)
                     .IsRequired()
@@ -121,7 +121,7 @@ namespace SmartUni.Models
                 entity.Property(e => e.StudId)
                     .HasMaxLength(10)
                     .IsUnicode(false)
-                    .ValueGeneratedNever();
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.ClassId)
                     .IsRequired()
@@ -164,7 +164,7 @@ namespace SmartUni.Models
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Stud)
+                entity.HasOne(d => d.Student)
                     .WithMany(p => p.StudentSubject)
                     .HasForeignKey(d => d.StudId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
@@ -223,7 +223,7 @@ namespace SmartUni.Models
                 entity.Property(e => e.TutorId)
                     .HasMaxLength(10)
                     .IsUnicode(false)
-                    .ValueGeneratedNever();
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Email)
                     .IsRequired()
@@ -246,7 +246,7 @@ namespace SmartUni.Models
                     .HasForeignKey(d => d.TutorTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_TutorType_Tutor");
-            });
+                });
 
             modelBuilder.Entity<TutorStatus>(entity =>
             {

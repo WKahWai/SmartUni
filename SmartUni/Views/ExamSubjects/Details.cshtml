@@ -1,0 +1,42 @@
+﻿@model SmartUni.Models.ExamSubject
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ExamSubject</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Mark)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mark)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Grade)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Grade)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Exam)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Exam.ExamDesc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StudSubject)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StudSubject.StudId)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

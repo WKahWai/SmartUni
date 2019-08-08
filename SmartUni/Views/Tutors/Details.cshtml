@@ -1,0 +1,48 @@
+﻿@model SmartUni.Models.Tutor
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tutor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TutorName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TutorName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TutorStatus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TutorStatus.TutorStatusDesc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TutorType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TutorType.TutorTypeDesc)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.TutorId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

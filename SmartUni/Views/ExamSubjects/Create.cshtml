@@ -1,0 +1,96 @@
+﻿@model SmartUni.Models.ExamSubject
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>ExamSubject</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ExamId" class="control-label"></label>
+                <select asp-for="ExamId" class="form-control" asp-items="ViewBag.ExamList"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="StudSubjectId" class="control-label"></label>
+                <select id="SubjectId" class="form-control" asp-items="ViewBag.Subject"><option value="">Pick one</option></select>
+            </div>
+            @*<div class="form-group">
+            <label asp-for="Mark" class="control-label"></label>
+            <input asp-for="Mark" class="form-control" />
+            <span asp-validation-for="Mark" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Grade" class="control-label"></label>
+            <input asp-for="Grade" class="form-control" />
+            <span asp-validation-for="Grade" class="text-danger"></span>
+        </div>*@
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>
+                        Student ID
+                    </th>
+                    <th>
+                        Student Name
+                    </th>
+                    <th>
+                        Class
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    List<SmartUni.Models.SelectedStudentList> StudentSubjectList = ViewBag.StudentSubjectList;
+
+                    foreach (var student in StudentSubjectList)
+                    {
+                        if (student.Selected == false)
+                        {
+                            @:<tr>
+                                @:<td>
+                                    <input type="checkbox"
+                                           name="selectedStudent"
+                                           value="@student.StudSubjectId"
+                                           @(Html.Raw(student.Selected ? "checked=\"checked\"" : "")) />
+                                @:</td>
+                                @:<td>
+                                    @student.StudId
+                                @:</td>
+                                @:<td>
+                                    @student.StudName
+                                @:</td>
+                                @:<td>
+                                    @student.ClassId
+                                @:</td>
+                            @:</tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script>
+        $("#SubjectId").on("change", function () {
+             window.location.href = '@Url.Action("Create", "ExamSubjects")' + '?selectedId=' + $(this).val();
+        });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

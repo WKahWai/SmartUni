@@ -11,10 +11,10 @@ namespace SmartUni.Models
         }
 
         public int StudSubjectId { get; set; }
-        public string StudId { get; set; }
+        public int StudId { get; set; }
         public int SubjectId { get; set; }
 
-        public virtual Student Stud { get; set; }
+        public virtual Student Student { get; set; }
         public virtual Subject Subject { get; set; }
         public virtual ICollection<ExamSubject> ExamSubject { get; set; }
     }
