@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -32,8 +33,9 @@ namespace SmartUni.Controllers
                 return RedirectToAction("Index", "Errors");
             }
 
-            var exam = await _context.Exam
-                .FirstOrDefaultAsync(m => m.ExamId == id);
+            var examId = new SqlParameter("@ExamId", id);
+            var exam = await _context.Exam.FromSql("EXEC GetExamById @ExamId", examId).FirstOrDefaultAsync();
+
             if (exam == null)
             {
                 return RedirectToAction("Index", "Errors");

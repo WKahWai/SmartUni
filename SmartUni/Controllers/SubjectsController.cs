@@ -128,7 +128,7 @@ namespace SmartUni.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TutorId"] = new SelectList(_context.Tutor, "TutorId", "TutorId", subject.TutorId);
+            ViewData["TutorId"] = new SelectList(_context.Tutor, "TutorId", "TutorName", subject.TutorId);
             return View(subject);
         }
 

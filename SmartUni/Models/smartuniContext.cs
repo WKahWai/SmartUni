@@ -28,7 +28,8 @@ namespace SmartUni.Models
         public virtual DbSet<TutorStatus> TutorStatus { get; set; }
         public virtual DbSet<TutorType> TutorType { get; set; }
         public virtual DbSet<ClassStudentList> ClassStudentList { get; set; }
-
+        public virtual DbSet<ExamStudentList> ExamStudentList { get; set; }
+        public virtual DbSet<SubjectList> SubjectList { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

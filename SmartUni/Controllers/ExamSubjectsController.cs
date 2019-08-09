@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SmartUni.Models;
 using SmartUni.Helpers;
+using System.Data.SqlClient;
 
 namespace SmartUni.Controllers
 {
@@ -26,37 +27,20 @@ namespace SmartUni.Controllers
             ViewData["ExamList"] = SetSelected.SetSelectedValue(new SelectList(_context.Exam, "ExamId", "ExamDesc"), examId.ToString());
             ViewData["ClassList"] = SetSelected.SetSelectedValue(new SelectList(_context.Class, "ClassId", "ClassDesc"), classId.ToString());
 
+            var p_examId = new SqlParameter("@p0", examId);
+            var p_classId = new SqlParameter("@p1", classId);
+
             if (classId != 0)
             {
-                var subjectList = (from es in _context.ExamSubject
-                                   join ss in _context.StudentSubject on es.StudSubjectId equals ss.StudSubjectId
-                                   join sj in _context.Subject on ss.SubjectId equals sj.SubjectId
-                                   join s in _context.Student on ss.StudId equals s.StudId
-                                   where es.ExamId == examId && s.ClassId == classId
-                                   select new
-                                   {
-                                       SubjectId = ss.SubjectId,
-                                       SubjectName = sj.SubjectName,
-                                   }).Distinct();
+                var subjectList = await _context.SubjectList.FromSql("EXEC GetSubjectListByExamIdClassId @p0, @p1", p_examId, p_classId).ToListAsync();
                 ViewData["SubjectList"] = SetSelected.SetSelectedValue(new SelectList(subjectList, "SubjectId", "SubjectName"), subjectId.ToString());
 
                 if (subjectId > 0)
                 {
-                    var studentList = (from es in _context.ExamSubject
-                                            join ss in _context.StudentSubject on es.StudSubjectId equals ss.StudSubjectId
-                                            join sj in _context.Subject on ss.SubjectId equals sj.SubjectId
-                                            join s in _context.Student on ss.StudId equals s.StudId
-                                            where es.ExamId == examId && s.ClassId == classId && sj.SubjectId == subjectId
-                                            select new ExamStudentList
-                                            {
-                                                StudId = ss.StudId,
-                                                StudName = s.StudName,
-                                                StudSubjectId = ss.StudSubjectId,
-                                                ExamId = es.ExamId,
-                                                Mark = es.Mark,
-                                                Grade = es.Grade
-                                            });
-                    ViewData["StudentList"] = await studentList.ToListAsync();
+                    var p_subjectId = new SqlParameter("@p2", subjectId);
+                    var studentList = await _context.ExamStudentList.FromSql("EXEC GetStudentListByExamIdClassIdSubjectId @p0, @p1, @p2", p_examId, p_classId, p_subjectId).ToListAsync();
+
+                    ViewData["StudentList"] = studentList;
                 }
             }
 
