@@ -29,14 +29,14 @@ namespace SmartUni.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var tutorType = await _context.TutorType
                 .FirstOrDefaultAsync(m => m.TutorTypeId == id);
             if (tutorType == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             return View(tutorType);
@@ -69,13 +69,13 @@ namespace SmartUni.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var tutorType = await _context.TutorType.FindAsync(id);
             if (tutorType == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
             return View(tutorType);
         }
@@ -89,7 +89,7 @@ namespace SmartUni.Controllers
         {
             if (id != tutorType.TutorTypeId)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             if (ModelState.IsValid)
@@ -103,7 +103,7 @@ namespace SmartUni.Controllers
                 {
                     if (!TutorTypeExists(tutorType.TutorTypeId))
                     {
-                        return NotFound();
+                        return RedirectToAction("Index", "Errors");
                     }
                     else
                     {
@@ -120,14 +120,14 @@ namespace SmartUni.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var tutorType = await _context.TutorType
                 .FirstOrDefaultAsync(m => m.TutorTypeId == id);
             if (tutorType == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             return View(tutorType);

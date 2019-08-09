@@ -29,14 +29,14 @@ namespace SmartUni.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var exam = await _context.Exam
                 .FirstOrDefaultAsync(m => m.ExamId == id);
             if (exam == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             return View(exam);
@@ -69,13 +69,13 @@ namespace SmartUni.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var exam = await _context.Exam.FindAsync(id);
             if (exam == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
             return View(exam);
         }
@@ -89,7 +89,7 @@ namespace SmartUni.Controllers
         {
             if (id != exam.ExamId)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             if (ModelState.IsValid)
@@ -103,7 +103,7 @@ namespace SmartUni.Controllers
                 {
                     if (!ExamExists(exam.ExamId))
                     {
-                        return NotFound();
+                        return RedirectToAction("Index", "Errors");
                     }
                     else
                     {
@@ -120,14 +120,14 @@ namespace SmartUni.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var exam = await _context.Exam
                 .FirstOrDefaultAsync(m => m.ExamId == id);
             if (exam == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             return View(exam);

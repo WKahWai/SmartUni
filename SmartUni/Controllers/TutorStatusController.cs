@@ -29,14 +29,14 @@ namespace SmartUni.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var tutorStatus = await _context.TutorStatus
                 .FirstOrDefaultAsync(m => m.TutorStatusId == id);
             if (tutorStatus == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             return View(tutorStatus);
@@ -69,13 +69,13 @@ namespace SmartUni.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var tutorStatus = await _context.TutorStatus.FindAsync(id);
             if (tutorStatus == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
             return View(tutorStatus);
         }
@@ -89,7 +89,7 @@ namespace SmartUni.Controllers
         {
             if (id != tutorStatus.TutorStatusId)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             if (ModelState.IsValid)
@@ -103,7 +103,7 @@ namespace SmartUni.Controllers
                 {
                     if (!TutorStatusExists(tutorStatus.TutorStatusId))
                     {
-                        return NotFound();
+                        return RedirectToAction("Index", "Errors");
                     }
                     else
                     {
@@ -120,14 +120,14 @@ namespace SmartUni.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var tutorStatus = await _context.TutorStatus
                 .FirstOrDefaultAsync(m => m.TutorStatusId == id);
             if (tutorStatus == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             return View(tutorStatus);

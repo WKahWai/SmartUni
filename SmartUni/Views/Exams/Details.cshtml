@@ -31,8 +31,8 @@
     </dl>
 </div>
 <div>
-    <a asp-controller="ExamSubjects" asp-action="Create" asp-route-id="@Model.ExamId"><input id="btnAdd" type="button" value="Add student" class="btn btn-default" /></a>
-    <a asp-controller="ExamSubjects" asp-action="Index" asp-route-examId="@Model.ExamId"><input id="btnAdd" type="button" value="Add student" class="btn btn-default" /></a>
     <a asp-action="Edit" asp-route-id="@Model.ExamId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Back to List</a><br />
+    <a asp-controller="ExamSubjects" asp-action="Create" asp-route-id="@Model.ExamId"><input id="btnAdd" type="button" value="Register students" class="btn btn-default" /></a>
+    <a asp-controller="ExamSubjects" asp-action="Index" asp-route-examId="@Model.ExamId"><input id="btnAdd" type="button" value="Register marks" class="btn btn-default" /></a>
 </div>

@@ -14,7 +14,7 @@ namespace SmartUni.Models
         [DisplayName("Student ID")]
         public int StudId { get; set; }
         [Required]
-        [DisplayName("Student ID")]
+        [DisplayName("Student Name")]
         public string StudName { get; set; }
         [Required]
         [DisplayName("Email")]
@@ -28,7 +28,7 @@ namespace SmartUni.Models
         [DisplayName("Study Status")]
         public int StudyStatusId { get; set; }
         [Required]
-        [DisplayName("Class ID")]
+        [DisplayName("Class")]
         public int ClassId { get; set; }
 
         public virtual Class Class { get; set; }

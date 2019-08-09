@@ -22,7 +22,7 @@ namespace SmartUni.Controllers
         // GET: Classes
         public async Task<IActionResult> Index()
         {
-            var smartUniContext = _context.Class.Include(@a => @a.StudyLevel).Include(@b => @b.Tutor);
+            var smartUniContext = _context.Class.Include(@a => @a.StudyLevel).Include(@b => @b.Tutor).Include(@c => @c.Student);
             return View(await smartUniContext.ToListAsync());
         }
 
@@ -37,7 +37,7 @@ namespace SmartUni.Controllers
         {
             if (id.Equals(null))
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var @class = await _context.Class
@@ -50,7 +50,7 @@ namespace SmartUni.Controllers
 
             if (@class == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             return View(@class);
@@ -83,20 +83,20 @@ namespace SmartUni.Controllers
         }
 
         // GET: Classes/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var @class = await _context.Class.FindAsync(id);
             if (@class == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
             ViewData["StudyLevelId"] = new SelectList(_context.StudyLevel, "StudyLevelId", "StudyLevelDesc", @class.StudyLevelId);
-            ViewData["TutorId"] = new SelectList(_context.Tutor, "TutorId", "TutorId", @class.TutorId);
+            ViewData["TutorId"] = new SelectList(_context.Tutor, "TutorId", "TutorName", @class.TutorId);
             return View(@class);
         }
 
@@ -105,11 +105,11 @@ namespace SmartUni.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("ClassId,ClassDesc,StudyLevelId,TutorId,Year")] Class @class)
+        public async Task<IActionResult> Edit(int id, [Bind("ClassId,ClassDesc,StudyLevelId,TutorId,Year")] Class @class)
         {
             if (!(id.Equals(@class.ClassId)))
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             if (ModelState.IsValid)
@@ -121,9 +121,9 @@ namespace SmartUni.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClassExists(@class.ClassId.ToString()))
+                    if (!ClassExists(@class.ClassId))
                     {
-                        return NotFound();
+                        return RedirectToAction("Index", "Errors");
                     }
                     else
                     {
@@ -138,11 +138,11 @@ namespace SmartUni.Controllers
         }
 
         // GET: Classes/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var @class = await _context.Class
@@ -151,7 +151,7 @@ namespace SmartUni.Controllers
                 .FirstOrDefaultAsync(m => m.ClassId.Equals(id));
             if (@class == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             return View(@class);
@@ -160,7 +160,7 @@ namespace SmartUni.Controllers
         // POST: Classes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var @class = await _context.Class.FindAsync(id);
             _context.Class.Remove(@class);
@@ -168,7 +168,7 @@ namespace SmartUni.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ClassExists(string id)
+        private bool ClassExists(int id)
         {
             return _context.Class.Any(e => e.ClassId.Equals(id));
         }

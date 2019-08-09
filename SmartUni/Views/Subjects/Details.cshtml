@@ -23,7 +23,7 @@
             @Html.DisplayFor(model => model.Subject.Tutor.TutorId)
         </dd>
     </dl>
-        <table class="table">
+        <table id="simple-table" class="table  table-bordered table-hover col-md-6">
             <thead>
                 <tr>
                     <th>
@@ -36,21 +36,30 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.StudentSubjectListing)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Student.StudId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Student.StudName)
-                        </td>
-                        <td>
-                            <input type="checkbox" value=@item.Student.StudId />
-                        </td>
-                    </tr>
-                }
-            </tbody>
+                @{ if (Model.StudentSubjectListing.Count() == 0)
+    {
+                        <tr>
+                            <td colspan="3" class="text-align-center">- No data available -</td>
+                        </tr>
+    }
+    else
+    {
+                        @foreach (var item in Model.StudentSubjectListing)
+{
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Student.StudId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Student.StudName)
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+}
+        }
+    }
+                    </tbody>
         </table>
         <a asp-controller="StudentSubjects" asp-action="Create" asp-route-id="@Model.Subject.SubjectId"><input id="btnAdd" type="button" value="Add student" class="btn btn-default" /></a>
 </div>

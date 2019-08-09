@@ -1,48 +1,42 @@
 ﻿@model SmartUni.Models.ExamSubjectList
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Mark Registration";
 }
 
-<h2>Index</h2>
+<h2>Mark Registration</h2>
 
-<p>
-    <a asp-action="Index">Create New</a>
-</p>
 <form asp-action="ModifyMark">
     <div class="row">
         <div class="col-md-4">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label class="control-label"></label>
+                <label class="control-label">Exam</label>
                 <select asp-for="ExamId" id="examId" class="form-control" asp-items="ViewBag.ExamList"></select>
             </div>
             <div class="form-group">
-                <label id="" class="control-label"></label>
+                <label id="" class="control-label">Class</label>
                 <select id="classId" class="form-control" asp-items="ViewBag.ClassList"><option value="">Pick one</option></select>
             </div>
             <div class="form-group">
-                <label id="" class="control-label"></label>
+                <label id="" class="control-label">Subject</label>
                 <select id="subjectId" class="form-control" asp-items="ViewBag.SubjectList"><option value="">Pick one</option></select>
             </div>
         </div>
     </div>
-    <table class="table">
+    <table id="simple-table" class="table  table-bordered table-hover col-md-6">
         <thead>
             <tr>
-                <th>
+                <th class="col-md-5">
+                    Student Name
+                </th>
+                <th class="col-md-1">
                     Mark
                 </th>
-                <th>
+                <th class="col-md-1">
                     Grade
                 </th>
-                <th>
-                    Exam
-                </th>
-                <th>
-                    StudSubject
-                </th>
-                <th></th>
+                <th class="col-md-2"></th>
             </tr>
         </thead>
         <tbody>
@@ -58,17 +52,24 @@
                         <td>
                             <input asp-for="@Model.ExamSubjectListing[count].ExamId" class="form-control" type="hidden" value="@item.ExamId" />
                             <input asp-for="@Model.ExamSubjectListing[count].StudSubjectId" class="form-control" type="hidden" value="@item.StudSubjectId" />
-                            <input id="input-@item.StudSubjectId" asp-for="@Model.ExamSubjectListing[count].Mark" class="form-control" value="@item.Mark"  onchange="assignGrade(@item.Mark, null, @item.StudSubjectId)" disabled="@(item.Mark >= 0 ? "disabled" : null)"/>
+                            <input id="input-@item.StudSubjectId" asp-for="@Model.ExamSubjectListing[count].Mark" class="form-control" value="@item.Mark" onchange="assignGrade(@item.Mark, null, @item.StudSubjectId)" disabled="@(item.Mark >= 0 ? "disabled" : null)" />
                         </td>
                         <td>
-                            <input asp-for="@Model.ExamSubjectListing[count].Grade" class="form-control no-border" value="@item.Grade" disabled="disabled"/>
+                            <input asp-for="@Model.ExamSubjectListing[count].Grade" class="form-control no-border" value="@item.Grade" disabled="disabled" />
                         </td>
                         <td>
-                            <a name="edit" id=@item.StudSubjectId onclick="enableEdit(@item.StudSubjectId)">Edit</a>
+                            <a name="edit" id=@item.StudSubjectId onclick="enableEdit(@item.StudSubjectId)">Edit</a> |
+                            <a id=@item.StudSubjectId asp-action="Delete" asp-route-id="@item.ExamId" asp-route-studSubjetId="@item.StudSubjectId" >Delete</a>
                         </td>
                     </tr>
                     count++;
                 }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-align-center">- No data available -</td>
+                </tr>
             }
         </tbody>
     </table>
@@ -76,6 +77,10 @@
         <input type="submit" value="Submit" class="btn btn-default" />
     </div>
 </form>
+<div>
+    <a asp-action="Index" asp-controller="Exams">Back</a>
+</div>
+
 
 @section Scripts {
     <script>

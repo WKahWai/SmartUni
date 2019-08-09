@@ -21,7 +21,7 @@ namespace SmartUni.Controllers
         // GET: Subjects
         public async Task<IActionResult> Index()
         {
-            var smartUniContext = _context.Subject.Include(s => s.Tutor);
+            var smartUniContext = _context.Subject.Include(s => s.Tutor).Include(ss => ss.StudentSubject);
             return View(await smartUniContext.ToListAsync());
         }
 
@@ -58,7 +58,7 @@ namespace SmartUni.Controllers
         // GET: Subjects/Create
         public IActionResult Create()
         {
-            ViewData["TutorId"] = new SelectList(_context.Tutor, "TutorId", "TutorId");
+            ViewData["TutorId"] = new SelectList(_context.Tutor, "TutorId", "TutorName");
             return View();
         }
 
@@ -92,7 +92,7 @@ namespace SmartUni.Controllers
             {
                 return NotFound();
             }
-            ViewData["TutorId"] = new SelectList(_context.Tutor, "TutorId", "TutorId", subject.TutorId);
+            ViewData["TutorId"] = new SelectList(_context.Tutor, "TutorId", "TutorName", subject.TutorId);
             return View(subject);
         }
 

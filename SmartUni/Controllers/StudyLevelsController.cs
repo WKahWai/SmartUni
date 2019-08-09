@@ -29,14 +29,14 @@ namespace SmartUni.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var studyLevel = await _context.StudyLevel
                 .FirstOrDefaultAsync(m => m.StudyLevelId == id);
             if (studyLevel == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             return View(studyLevel);
@@ -69,13 +69,13 @@ namespace SmartUni.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var studyLevel = await _context.StudyLevel.FindAsync(id);
             if (studyLevel == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
             return View(studyLevel);
         }
@@ -89,7 +89,7 @@ namespace SmartUni.Controllers
         {
             if (id != studyLevel.StudyLevelId)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             if (ModelState.IsValid)
@@ -103,7 +103,7 @@ namespace SmartUni.Controllers
                 {
                     if (!StudyLevelExists(studyLevel.StudyLevelId))
                     {
-                        return NotFound();
+                        return RedirectToAction("Index", "Errors");
                     }
                     else
                     {
@@ -120,14 +120,14 @@ namespace SmartUni.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var studyLevel = await _context.StudyLevel
                 .FirstOrDefaultAsync(m => m.StudyLevelId == id);
             if (studyLevel == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             return View(studyLevel);

@@ -6,8 +6,9 @@ namespace SmartUni.Models
 {
     public partial class ExamSubject
     {
-        [DisplayName("Exam ID")]
+        [DisplayName("Exam")]
         public int ExamId { get; set; }
+        [DisplayName("Subject")]
         public int StudSubjectId { get; set; }
         [DisplayName("Mark")]
         public int? Mark { get; set; }

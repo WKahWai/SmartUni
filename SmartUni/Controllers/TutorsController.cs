@@ -36,7 +36,7 @@ namespace SmartUni.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var tutor = await _context.Tutor
@@ -49,7 +49,7 @@ namespace SmartUni.Controllers
 
             if (tutor == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             return View(tutor);
@@ -86,13 +86,13 @@ namespace SmartUni.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var tutor = await _context.Tutor.FindAsync(id);
             if (tutor == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
             ViewData["TutorStatusId"] = new SelectList(_context.TutorStatus, "TutorStatusId", "TutorStatusDesc", tutor.TutorStatusId);
             ViewData["TutorTypeId"] = new SelectList(_context.TutorType, "TutorTypeId", "TutorTypeDesc", tutor.TutorTypeId);
@@ -108,7 +108,7 @@ namespace SmartUni.Controllers
         {
             if (id != tutor.TutorId)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             if (ModelState.IsValid)
@@ -122,7 +122,7 @@ namespace SmartUni.Controllers
                 {
                     if (!TutorExists(tutor.TutorId))
                     {
-                        return NotFound();
+                        return RedirectToAction("Index", "Errors");
                     }
                     else
                     {
@@ -141,7 +141,7 @@ namespace SmartUni.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var tutor = await _context.Tutor
@@ -150,7 +150,7 @@ namespace SmartUni.Controllers
                 .FirstOrDefaultAsync(m => m.TutorId == id);
             if (tutor == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             return View(tutor);

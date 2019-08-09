@@ -28,23 +28,34 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExamDesc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExamYear)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExamTerm)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ExamId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ExamId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ExamId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
+        @{ if (Model.Count() == 0)
+    {
+                <tr>
+                    <td colspan="4" class="text-align-center">- No data available -</td>
+                </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ExamDesc)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ExamYear)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ExamTerm)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.ExamId">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.ExamId">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.ExamId">Delete</a>
+                        </td>
+                    </tr>
+            }
+        }
+    }
+            </tbody>
 </table>

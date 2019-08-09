@@ -77,7 +77,7 @@ namespace SmartUni.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var examSubject = await _context.ExamSubject
@@ -86,7 +86,7 @@ namespace SmartUni.Controllers
                 .FirstOrDefaultAsync(m => m.ExamId == id);
             if (examSubject == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             return View(examSubject);
@@ -113,14 +113,17 @@ namespace SmartUni.Controllers
             var examList = new HashSet<int>(_context.ExamSubject.Where(e => e.ExamId == examId).Select(e => e.StudSubjectId));
             foreach( var item in studentSubject)
             {
-                viewModel.Add(new SelectedStudentList
+                if (!examList.Contains(item.StudSubjectId))
                 {
-                    StudId = item.StudId,
-                    StudName = item.Student.StudName,
-                    ClassId = item.Student.ClassId,
-                    StudSubjectId = item.StudSubjectId,
-                    Selected = examList.Contains(item.StudSubjectId),
-                }); ;
+                    viewModel.Add(new SelectedStudentList
+                    {
+                        StudId = item.StudId,
+                        StudName = item.Student.StudName,
+                        ClassId = item.Student.ClassId,
+                        StudSubjectId = item.StudSubjectId,
+                        Selected = false,
+                    }); ;
+                }
             }
             ViewData["StudentSubjectList"] = viewModel;
         }
@@ -188,13 +191,13 @@ namespace SmartUni.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var examSubject = await _context.ExamSubject.FindAsync(id);
             if (examSubject == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
             ViewData["ExamId"] = new SelectList(_context.Exam, "ExamId", "ExamDesc", examSubject.ExamId);
             ViewData["StudSubjectId"] = new SelectList(_context.StudentSubject, "StudSubjectId", "StudId", examSubject.StudSubjectId);
@@ -210,7 +213,7 @@ namespace SmartUni.Controllers
         {
             if (id != examSubject.ExamId)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             if (ModelState.IsValid)
@@ -224,7 +227,7 @@ namespace SmartUni.Controllers
                 {
                     if (!ExamSubjectExists(examSubject.ExamId))
                     {
-                        return NotFound();
+                        return RedirectToAction("Index", "Errors");
                     }
                     else
                     {
@@ -239,20 +242,20 @@ namespace SmartUni.Controllers
         }
 
         // GET: ExamSubjects/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? id, int studSubjetId)
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var examSubject = await _context.ExamSubject
                 .Include(e => e.Exam)
                 .Include(e => e.StudSubject)
-                .FirstOrDefaultAsync(m => m.ExamId == id);
+                .FirstOrDefaultAsync(m => m.StudSubjectId ==  studSubjetId && m.ExamId == id);
             if (examSubject == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             return View(examSubject);
@@ -261,9 +264,9 @@ namespace SmartUni.Controllers
         // POST: ExamSubjects/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int ExamId, int StudSubjectId)
         {
-            var examSubject = await _context.ExamSubject.FindAsync(id);
+            var examSubject = await _context.ExamSubject.FirstOrDefaultAsync(m => m.StudSubjectId == StudSubjectId && m.ExamId == ExamId);
             _context.ExamSubject.Remove(examSubject);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

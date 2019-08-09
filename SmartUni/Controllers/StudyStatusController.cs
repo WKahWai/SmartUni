@@ -29,14 +29,14 @@ namespace SmartUni.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var studyStatus = await _context.StudyStatus
                 .FirstOrDefaultAsync(m => m.StudyStatusId == id);
             if (studyStatus == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             return View(studyStatus);
@@ -69,13 +69,13 @@ namespace SmartUni.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var studyStatus = await _context.StudyStatus.FindAsync(id);
             if (studyStatus == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
             return View(studyStatus);
         }
@@ -89,7 +89,7 @@ namespace SmartUni.Controllers
         {
             if (id != studyStatus.StudyStatusId)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             if (ModelState.IsValid)
@@ -103,7 +103,7 @@ namespace SmartUni.Controllers
                 {
                     if (!StudyStatusExists(studyStatus.StudyStatusId))
                     {
-                        return NotFound();
+                        return RedirectToAction("Index", "Errors");
                     }
                     else
                     {
@@ -120,14 +120,14 @@ namespace SmartUni.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var studyStatus = await _context.StudyStatus
                 .FirstOrDefaultAsync(m => m.StudyStatusId == id);
             if (studyStatus == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             return View(studyStatus);

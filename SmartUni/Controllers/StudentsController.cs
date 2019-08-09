@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SmartUni.Models;
+using SmartUni.Helpers;
 
 namespace SmartUni.Controllers
 {
@@ -19,11 +20,12 @@ namespace SmartUni.Controllers
         }
 
         // GET: Students
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int filter)
         {
             var smartUniContext = _context.Student.Include(s => s.Class).Include(s => s.StudyStatus);
+            ViewData["ClassList"] = SetSelected.SetSelectedValue(new SelectList(_context.Class, "ClassId", "ClassDesc"), filter.ToString());
             //var studList = _context.Student.FromSql("GetStudents").ToList();
-            return View(await smartUniContext.ToListAsync());
+            return View(await smartUniContext.Where(s => s.ClassId == filter).ToListAsync());
         }
 
         // GET: Students/Details/5
@@ -55,7 +57,7 @@ namespace SmartUni.Controllers
         // GET: Students/Create
         public IActionResult Create()
         {
-            ViewData["ClassId"] = new SelectList(_context.Class, "ClassId", "ClassId");
+            ViewData["ClassId"] = new SelectList(_context.Class, "ClassId", "ClassDesc");
             ViewData["StudyStatusId"] = new SelectList(_context.StudyStatus, "StudyStatusId", "StudyStatusDesc");
             return View();
         }
@@ -91,7 +93,7 @@ namespace SmartUni.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClassId"] = new SelectList(_context.Class, "ClassId", "ClassId", student.ClassId);
+            ViewData["ClassId"] = new SelectList(_context.Class, "ClassId", "ClassDesc", student.ClassId);
             ViewData["StudyStatusId"] = new SelectList(_context.StudyStatus, "StudyStatusId", "StudyStatusDesc", student.StudyStatusId);
 
             return View(student);
