@@ -51,26 +51,34 @@
         </thead>
 
         <tbody>
-            @{
-                List<ClassStudentList> StudentList = ViewBag.StudentList;
-
-                foreach (var student in StudentList)
-                {
+                @{ if (ViewBag.StudentList == null)
+    {
                         <tr>
-                            <td class="center">
-                                <label class="pos-rel">@student.StudId</label>
-                            </td>
-
-                            <td>
-                                <a href="/Students/Details/@student.StudId">@student.StudName</a>
-                            </td>
-                            <td  class="center">
-                                <label class="pos-rel">@student.StudyStatusDesc</label>
-</td>
+                            <td colspan="3" class="text-align-center">- No data available -</td>
                         </tr>
-                }
+    }
+    else
+    {
+        List<ClassStudentList> StudentList = ViewBag.StudentList;
+
+        foreach (var student in StudentList)
+        {
+                            <tr>
+                                <td class="center">
+                                    <label class="pos-rel">@student.StudId</label>
+                                </td>
+
+                                <td>
+                                    <a href="/Students/Details/@student.StudId">@student.StudName</a>
+                                </td>
+                                <td class="center">
+                                    <label class="pos-rel">@student.StudyStatusDesc</label>
+                                </td>
+                            </tr>
             }
-        </tbody>
+        }
+    }
+                </tbody>
     </table>
 </div>
 <div>

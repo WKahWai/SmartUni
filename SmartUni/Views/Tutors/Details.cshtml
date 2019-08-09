@@ -50,23 +50,31 @@
         </thead>
 
         <tbody>
-            @{
-                List<Subject> SubjectList = ViewBag.SubjectList;
-
-                foreach (var subject in SubjectList)
-                {
+            @{ if (ViewBag.SubjectList == null)
+    {
                     <tr>
-                        <td class="center">
-                            <label class="pos-rel">@subject.SubjectId</label>
-                        </td>
-
-                        <td>
-                            <a href="#">@subject.SubjectName</a>
-                        </td>
+                        <td colspan="2" class="text-align-center">- No data available -</td>
                     </tr>
-                }
+    }
+    else
+    {
+        List<Subject> SubjectList = ViewBag.SubjectList;
+
+        foreach (var subject in SubjectList)
+        {
+                        <tr>
+                            <td class="center">
+                                <label class="pos-rel">@subject.SubjectId</label>
+                            </td>
+
+                            <td>
+                                <a href="#">@subject.SubjectName</a>
+                            </td>
+                        </tr>
             }
-         </tbody>
+        }
+    }
+            </tbody>
     </table>
 </div>
 <div>
