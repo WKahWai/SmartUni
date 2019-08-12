@@ -1,15 +1,17 @@
 ﻿@model IEnumerable<SmartUni.Models.Class>
+@using SmartUni.Resources
+@inject Localizations SharedLocalizer
 
 @{
-    ViewData["Title"] = "Classes";
+    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("Classes");
 }
 
-<h2>Classes</h2>
+    <h2>@SharedLocalizer.GetLocalizedHtmlString("Classes")</h2>
 
 <p>
     <button class="btn btn-info" onclick="location.href='@Url.Action("Create", "Classes")'">
         <i class="ace-icon fa glyphicon-plus bigger-110"></i>
-        Create New
+        @SharedLocalizer.GetLocalizedHtmlString("Create New")
     </button>
 </p>
 <table id="simple-table" class="table  table-bordered table-hover col-md-6">
@@ -28,50 +30,50 @@
                 @Html.DisplayNameFor(model => model.StudyLevelId)
             </th>
             <th class="col-md-3">
-                @Html.DisplayNameFor(model => model.Tutor)
+                @Html.DisplayNameFor(model => model.TutorId)
             </th>
-            <th class="col-md-1">Total Student</th>
+            <th class="col-md-1">@SharedLocalizer.GetLocalizedHtmlString("Total Student")</th>
             <th class="col-md-2"></th>
         </tr>
     </thead>
     <tbody>
         @{ if (Model.Count() == 0)
-              {
+            {
                 <tr>
-                    <td colspan="7" class="text-align-center">- No data available -</td>
+                            <td colspan="7" class="text-align-center">@SharedLocalizer.GetLocalizedHtmlString("-No data available -")</td>
                 </tr>
-              }
-              else
-              {
-                  foreach (var item in Model)
-                  {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ClassId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ClassDesc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Year)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StudyLevel.StudyLevelDesc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tutor.TutorName)
-        </td>
-        <td class="text-align-center">
-            @Html.DisplayFor(modelItem => item.Student.Count)
-        </td>
-        <td>
-            <a asp-action="Edit" asp-route-id="@item.ClassId">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.ClassId">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.ClassId">Delete</a>
-        </td>
-    </tr>
-                    }
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ClassId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ClassDesc)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Year)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StudyLevel.StudyLevelDesc)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tutor.TutorName)
+                        </td>
+                        <td class="text-align-center">
+                            @Html.DisplayFor(modelItem => item.Student.Count)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.ClassId">@SharedLocalizer.GetLocalizedHtmlString("Edit")</a> |
+                            <a asp-action="Details" asp-route-id="@item.ClassId">@SharedLocalizer.GetLocalizedHtmlString("Details")</a> |
+                            <a asp-action="Delete" asp-route-id="@item.ClassId">@SharedLocalizer.GetLocalizedHtmlString("Delete")</a>
+                        </td>
+                    </tr>
                 }
             }
-   </tbody>
+        }
+    </tbody>
 </table>

@@ -1,13 +1,15 @@
 ﻿@model SmartUni.Models.Exam
+@using SmartUni.Resources
+@inject Localizations SharedLocalizer
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("Details");
 }
 
-<h2>Details</h2>
+    <h2>@SharedLocalizer.GetLocalizedHtmlString("Details")</h2>
 
 <div>
-    <h4>Exam</h4>
+    <h4>@SharedLocalizer.GetLocalizedHtmlString("Exam")</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -31,8 +33,8 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ExamId">Edit</a> |
-    <a asp-action="Index">Back to List</a><br />
-    <a asp-controller="ExamSubjects" asp-action="Create" asp-route-id="@Model.ExamId"><input id="btnAdd" type="button" value="Register students" class="btn btn-default" /></a>
-    <a asp-controller="ExamSubjects" asp-action="Index" asp-route-examId="@Model.ExamId"><input id="btnAdd" type="button" value="Register marks" class="btn btn-default" /></a>
+    <a asp-action="Edit" asp-route-id="@Model.ExamId">@SharedLocalizer.GetLocalizedHtmlString("Edit")</a> |
+    <a asp-action="Index">@SharedLocalizer.GetLocalizedHtmlString("Back to List")</a><br />
+    <a asp-controller="ExamSubjects" asp-action="Create" asp-route-id="@Model.ExamId"><input id="btnAdd" type="button" value="@SharedLocalizer.GetLocalizedHtmlString("Register students")" class="btn btn-default" /></a>
+    <a asp-controller="ExamSubjects" asp-action="Index" asp-route-examId="@Model.ExamId"><input id="btnAdd" type="button" value="@SharedLocalizer.GetLocalizedHtmlString("Register marks")" class="btn btn-default" /></a>
 </div>

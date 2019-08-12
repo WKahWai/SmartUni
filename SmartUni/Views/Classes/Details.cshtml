@@ -1,13 +1,15 @@
 ﻿@model SmartUni.Models.Class
+@using SmartUni.Resources
+@inject Localizations SharedLocalizer
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("Details");
 }
 
-<h2>Details</h2>
+<h2>@SharedLocalizer.GetLocalizedHtmlString("Details")</h2>
 
 <div>
-    <h4>Class</h4>
+    <h4>@SharedLocalizer.GetLocalizedHtmlString("Class")</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -29,13 +31,13 @@
             @Html.DisplayFor(model => model.Year)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.StudyLevel)
+            @Html.DisplayNameFor(model => model.StudyLevelId)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.StudyLevel.StudyLevelDesc)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Tutor)
+            @Html.DisplayNameFor(model => model.TutorId)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Tutor.TutorId)
@@ -44,44 +46,44 @@
     <table id="simple-table" class="table  table-bordered table-hover col-md-6">
         <thead>
             <tr>
-                <th class="center col-md-1">Student ID</th>
-                <th class="col-md-6">Student Name</th>
-                <th class="center col-md-3">Study Status</th>
+                <th class="center col-md-1">@SharedLocalizer.GetLocalizedHtmlString("Student ID")</th>
+                <th class="col-md-6">@SharedLocalizer.GetLocalizedHtmlString("Student Name")</th>
+                <th class="center col-md-3">@SharedLocalizer.GetLocalizedHtmlString("Study Status")</th>
             </tr>
         </thead>
 
         <tbody>
-                @{ if (ViewBag.StudentList == null)
-    {
+            @{ if (ViewBag.StudentList == null)
+                {
+                    <tr>
+                        <td colspan="3" class="text-align-center">@SharedLocalizer.GetLocalizedHtmlString("-No data available -")</td>
+                    </tr>
+                }
+                else
+                {
+                    List<ClassStudentList> StudentList = ViewBag.StudentList;
+
+                    foreach (var student in StudentList)
+                    {
                         <tr>
-                            <td colspan="3" class="text-align-center">- No data available -</td>
+                            <td class="center">
+                                <label class="pos-rel">@student.StudId</label>
+                            </td>
+
+                            <td>
+                                <a href="/Students/Details/@student.StudId">@student.StudName</a>
+                            </td>
+                            <td class="center">
+                                <label class="pos-rel">@student.StudyStatusDesc</label>
+                            </td>
                         </tr>
-    }
-    else
-    {
-        List<ClassStudentList> StudentList = ViewBag.StudentList;
-
-        foreach (var student in StudentList)
-        {
-                            <tr>
-                                <td class="center">
-                                    <label class="pos-rel">@student.StudId</label>
-                                </td>
-
-                                <td>
-                                    <a href="/Students/Details/@student.StudId">@student.StudName</a>
-                                </td>
-                                <td class="center">
-                                    <label class="pos-rel">@student.StudyStatusDesc</label>
-                                </td>
-                            </tr>
+                    }
+                }
             }
-        }
-    }
-                </tbody>
+        </tbody>
     </table>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ClassId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.ClassId">@SharedLocalizer.GetLocalizedHtmlString("Edit")</a> |
+    <a asp-action="Index">@SharedLocalizer.GetLocalizedHtmlString("Back to List")</a>
 </div>

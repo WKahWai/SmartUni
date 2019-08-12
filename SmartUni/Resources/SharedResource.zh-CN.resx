@@ -117,19 +117,229 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="- No data available -" xml:space="preserve">
+    <value>- 无数据可显示 -</value>
+  </data>
+  <data name="-No data available-" xml:space="preserve">
+    <value>- 无数据可显示 -</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>新增</value>
+  </data>
+  <data name="Add new class" xml:space="preserve">
+    <value>新增班级</value>
+  </data>
+  <data name="Add new exam" xml:space="preserve">
+    <value>新增考试</value>
+  </data>
+  <data name="Add new student" xml:space="preserve">
+    <value>新增学生</value>
+  </data>
+  <data name="Add new subject" xml:space="preserve">
+    <value>新增科目</value>
+  </data>
+  <data name="Add new tutor" xml:space="preserve">
+    <value>新增教师</value>
+  </data>
+  <data name="Are you sure you want to delete this ?" xml:space="preserve">
+    <value>你确定要删除此资料吗？</value>
+  </data>
+  <data name="Back to List" xml:space="preserve">
+    <value>回到列表</value>
+  </data>
   <data name="Choose from the left panel to start" xml:space="preserve">
     <value>从左侧面板中选择以开始</value>
+  </data>
+  <data name="Class" xml:space="preserve">
+    <value>班级</value>
+  </data>
+  <data name="Class ID" xml:space="preserve">
+    <value>班级编号</value>
+  </data>
+  <data name="Class Name" xml:space="preserve">
+    <value>班级名字</value>
+  </data>
+  <data name="Classes" xml:space="preserve">
+    <value>班级</value>
+  </data>
+  <data name="Contact No." xml:space="preserve">
+    <value>联络号码</value>
+  </data>
+  <data name="Contact No. must be within 10-11 digits." xml:space="preserve">
+    <value>联系号码必须在10-11位数之内。</value>
   </data>
   <data name="Create" xml:space="preserve">
     <value>新增</value>
   </data>
+  <data name="Create New" xml:space="preserve">
+    <value>新增</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>主页</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>细节</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>电邮地址</value>
+  </data>
+  <data name="Exam" xml:space="preserve">
+    <value>考试</value>
+  </data>
+  <data name="Exam Description" xml:space="preserve">
+    <value>考试细节</value>
+  </data>
+  <data name="Examination" xml:space="preserve">
+    <value>考试</value>
+  </data>
+  <data name="Exams" xml:space="preserve">
+    <value>考试</value>
+  </data>
+  <data name="Go" xml:space="preserve">
+    <value>走</value>
+  </data>
+  <data name="Grade" xml:space="preserve">
+    <value>等级</value>
+  </data>
   <data name="Home page" xml:space="preserve">
     <value>主页</value>
+  </data>
+  <data name="Invalid Email Address" xml:space="preserve">
+    <value>无效的电邮地址</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>项目</value>
   </data>
   <data name="Kindly contact Kah Wai if you face any problem." xml:space="preserve">
     <value>如果您遇到任何问题，请联系Kah Wai。</value>
   </data>
+  <data name="Link" xml:space="preserve">
+    <value>链接</value>
+  </data>
+  <data name="Manage classes" xml:space="preserve">
+    <value>管理班级</value>
+  </data>
+  <data name="Manage exams" xml:space="preserve">
+    <value>管理考试</value>
+  </data>
+  <data name="Manage settings" xml:space="preserve">
+    <value>管理设置</value>
+  </data>
+  <data name="Manage students" xml:space="preserve">
+    <value>管理学生</value>
+  </data>
+  <data name="Manage subjects" xml:space="preserve">
+    <value>管理科目</value>
+  </data>
+  <data name="Manage tutors" xml:space="preserve">
+    <value>管理教师</value>
+  </data>
+  <data name="Mark" xml:space="preserve">
+    <value>分数</value>
+  </data>
+  <data name="Mark must be within the range 0 and 100." xml:space="preserve">
+    <value>分数必须介于0至100分。</value>
+  </data>
+  <data name="Mark Registration" xml:space="preserve">
+    <value>分数输入</value>
+  </data>
+  <data name="Pick one" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="Register marks" xml:space="preserve">
+    <value>分数输入</value>
+  </data>
+  <data name="Register students" xml:space="preserve">
+    <value>学生注册</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>已选择</value>
+  </data>
+  <data name="Student" xml:space="preserve">
+    <value>学生</value>
+  </data>
+  <data name="Student Name" xml:space="preserve">
+    <value>学生名字</value>
+  </data>
+  <data name="Student's Subject" xml:space="preserve">
+    <value>学生科目</value>
+  </data>
+  <data name="Students" xml:space="preserve">
+    <value>学生</value>
+  </data>
+  <data name="Study Level" xml:space="preserve">
+    <value>学历等级</value>
+  </data>
+  <data name="Study Status" xml:space="preserve">
+    <value>学生状态</value>
+  </data>
+  <data name="Study Status Description" xml:space="preserve">
+    <value>学生状态明细</value>
+  </data>
+  <data name="Study Status ID" xml:space="preserve">
+    <value>学生状态编号</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>科目</value>
+  </data>
+  <data name="Subject ID" xml:space="preserve">
+    <value>科目编号</value>
+  </data>
+  <data name="Subject Name" xml:space="preserve">
+    <value>科目名字</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="Term" xml:space="preserve">
+    <value>学期</value>
+  </data>
+  <data name="Total Student" xml:space="preserve">
+    <value>总学生人数</value>
+  </data>
+  <data name="Tutor" xml:space="preserve">
+    <value>教师</value>
+  </data>
+  <data name="Tutor Name" xml:space="preserve">
+    <value>教师名字</value>
+  </data>
+  <data name="Tutor Status" xml:space="preserve">
+    <value>教师状态</value>
+  </data>
+  <data name="Tutor Status Description" xml:space="preserve">
+    <value>教师状态明细</value>
+  </data>
+  <data name="Tutor Status ID" xml:space="preserve">
+    <value>教师状态编号</value>
+  </data>
+  <data name="Tutor Type" xml:space="preserve">
+    <value>教师种类</value>
+  </data>
+  <data name="Tutor Type Description" xml:space="preserve">
+    <value>教师种类明细</value>
+  </data>
+  <data name="Tutor Type ID" xml:space="preserve">
+    <value>教师种类编号</value>
+  </data>
+  <data name="Tutors" xml:space="preserve">
+    <value>教师</value>
+  </data>
   <data name="Welcome" xml:space="preserve">
     <value>欢迎</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>年份</value>
+  </data>
+  <data name="Year must be valid integer within the range 2015 and 2025." xml:space="preserve">
+    <value>年份必须是2015年和2025年范围内的有效整数。</value>
   </data>
 </root>

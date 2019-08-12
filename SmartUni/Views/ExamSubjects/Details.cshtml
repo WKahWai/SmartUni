@@ -1,13 +1,15 @@
 ﻿@model SmartUni.Models.ExamSubject
+@using SmartUni.Resources
+@inject Localizations SharedLocalizer
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("Details");
 }
 
-<h2>Details</h2>
+    <h2>@SharedLocalizer.GetLocalizedHtmlString("Details")</h2>
 
 <div>
-    <h4>ExamSubject</h4>
+    <h4>@SharedLocalizer.GetLocalizedHtmlString("Student's Subject")</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -37,6 +39,5 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">@SharedLocalizer.GetLocalizedHtmlString("Back to List")</a>
 </div>

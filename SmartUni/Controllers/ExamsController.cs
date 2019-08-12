@@ -126,7 +126,9 @@ namespace SmartUni.Controllers
             }
 
             var exam = await _context.Exam
+                .Include(e => e.ExamSubject)
                 .FirstOrDefaultAsync(m => m.ExamId == id);
+
             if (exam == null)
             {
                 return RedirectToAction("Index", "Errors");

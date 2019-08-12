@@ -1,15 +1,17 @@
 ﻿@model IEnumerable<SmartUni.Models.TutorType>
+@using SmartUni.Resources
+@inject Localizations SharedLocalizer
 
 @{
-    ViewData["Title"] = "Tutor Type";
+    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("Tutor Type");
 }
 
-<h2>Tutor Type</h2>
+    <h2>@SharedLocalizer.GetLocalizedHtmlString("Tutor Type")</h2>
 
 <p>
     <button class="btn btn-info" onclick="location.href='@Url.Action("Create", "TutorTypes")'">
         <i class="ace-icon fa glyphicon-plus bigger-110"></i>
-        Create New
+        @SharedLocalizer.GetLocalizedHtmlString("Create New")
     </button>
 </p>
 <table id="simple-table" class="table  table-bordered table-hover col-md-6">
@@ -26,15 +28,15 @@
     </thead>
     <tbody>
         @{ if (Model.Count() == 0)
-    {
+            {
                 <tr>
-                    <td colspan="3" class="text-align-center">- No data available -</td>
+                            <td colspan="3" class="text-align-center">@SharedLocalizer.GetLocalizedHtmlString("-No data available -")</td>
                 </tr>
-    }
-    else
-    {
-        foreach (var item in Model)
-        {
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.TutorTypeId)
@@ -43,13 +45,13 @@
                             @Html.DisplayFor(modelItem => item.TutorTypeDesc)
                         </td>
                         <td>
-                            <a asp-action="Edit" asp-route-id="@item.TutorTypeId">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.TutorTypeId">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.TutorTypeId">Delete</a>
+                            <a asp-action="Edit" asp-route-id="@item.TutorTypeId">@SharedLocalizer.GetLocalizedHtmlString("Edit")</a> |
+                            <a asp-action="Details" asp-route-id="@item.TutorTypeId">@SharedLocalizer.GetLocalizedHtmlString("Details")</a> |
+                            <a asp-action="Delete" asp-route-id="@item.TutorTypeId">@SharedLocalizer.GetLocalizedHtmlString("Delete")</a>
                         </td>
                     </tr>
+                }
             }
         }
-    }
-            </tbody>
+    </tbody>
 </table>

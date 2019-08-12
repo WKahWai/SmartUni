@@ -1,13 +1,15 @@
 ﻿@model SmartUni.Models.Tutor
+@using SmartUni.Resources
+@inject Localizations SharedLocalizer
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("Details");
 }
 
-<h2>Details</h2>
+    <h2>@SharedLocalizer.GetLocalizedHtmlString("Details")</h2>
 
 <div>
-    <h4>Tutor</h4>
+    <h4>@SharedLocalizer.GetLocalizedHtmlString("Tutor")</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -29,13 +31,13 @@
             @Html.DisplayFor(model => model.PhoneNo)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.TutorStatus)
+            @Html.DisplayNameFor(model => model.TutorStatusId)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.TutorStatus.TutorStatusDesc)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.TutorType)
+            @Html.DisplayNameFor(model => model.TutorTypeId)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.TutorType.TutorTypeDesc)
@@ -44,24 +46,24 @@
     <table id="simple-table" class="table  table-bordered table-hover col-md-6">
         <thead>
             <tr>
-                <th class="center col-md-2">Subject ID</th>
-                <th class="col-md-4">Subject Name</th>
+                <th class="center col-md-2">@SharedLocalizer.GetLocalizedHtmlString("Subject ID")</th>
+                <th class="col-md-4">@SharedLocalizer.GetLocalizedHtmlString("Subject Name")</th>
             </tr>
         </thead>
 
         <tbody>
             @{ if (ViewBag.SubjectList == null)
-    {
+                {
                     <tr>
-                        <td colspan="2" class="text-align-center">- No data available -</td>
+                                    <td colspan="2" class="text-align-center">@SharedLocalizer.GetLocalizedHtmlString("-No data available -")</td>
                     </tr>
-    }
-    else
-    {
-        List<Subject> SubjectList = ViewBag.SubjectList;
+                }
+                else
+                {
+                    List<Subject> SubjectList = ViewBag.SubjectList;
 
-        foreach (var subject in SubjectList)
-        {
+                    foreach (var subject in SubjectList)
+                    {
                         <tr>
                             <td class="center">
                                 <label class="pos-rel">@subject.SubjectId</label>
@@ -71,13 +73,13 @@
                                 <a href="#">@subject.SubjectName</a>
                             </td>
                         </tr>
+                    }
+                }
             }
-        }
-    }
-            </tbody>
+        </tbody>
     </table>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.TutorId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.TutorId">@SharedLocalizer.GetLocalizedHtmlString("Edit")</a> |
+    <a asp-action="Index">@SharedLocalizer.GetLocalizedHtmlString("Back to List")</a>
 </div>

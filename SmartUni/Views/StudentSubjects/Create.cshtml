@@ -1,36 +1,39 @@
 ﻿@model SmartUni.Models.StudentSubject
+@using SmartUni.Resources
+@inject Localizations SharedLocalizer
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("Student's Subject");
 }
 
-<h2>Create</h2>
+    <h2>@SharedLocalizer.GetLocalizedHtmlString("Add")</h2>
 
-<h4>StudentSubject</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="StudId" class="control-label"></label>
-                <select asp-for="StudId" class ="form-control" asp-items="ViewBag.StudId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="SubjectId" class="control-label"></label>
-                <select asp-for="SubjectId" class ="form-control" asp-items="ViewBag.Subject"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
+    <h4>
+        @SharedLocalizer.GetLocalizedHtmlString("Student's Subject")</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="StudId" class="control-label"></label>
+                    <select asp-for="StudId" class="form-control" asp-items="ViewBag.StudId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SubjectId" class="control-label"></label>
+                    <select asp-for="SubjectId" class="form-control" asp-items="ViewBag.Subject"></select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="@SharedLocalizer.GetLocalizedHtmlString("Create")" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a href="javascript:history.back();">Back</a>
-</div>
+    <div>
+        <a href="javascript:history.back();">@SharedLocalizer.GetLocalizedHtmlString("Back")</a>
+    </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

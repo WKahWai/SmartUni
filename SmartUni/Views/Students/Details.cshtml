@@ -1,13 +1,15 @@
 ﻿@model SmartUni.Models.Student
+@using SmartUni.Resources
+@inject Localizations SharedLocalizer
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("Details");
 }
 
-<h2>Details</h2>
+    <h2>@SharedLocalizer.GetLocalizedHtmlString("Details")</h2>
 
 <div>
-    <h4>Student</h4>
+    <h4>@SharedLocalizer.GetLocalizedHtmlString("Student")</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -29,13 +31,13 @@
             @Html.DisplayFor(model => model.PhoneNo)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Class)
+            @Html.DisplayNameFor(model => model.ClassId)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Class.ClassId)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.StudyStatus)
+            @Html.DisplayNameFor(model => model.StudyStatusId)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.StudyStatus.StudyStatusDesc)
@@ -43,6 +45,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.StudId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.StudId">@SharedLocalizer.GetLocalizedHtmlString("Edit")</a> |
+    <a asp-action="Index">@SharedLocalizer.GetLocalizedHtmlString("Back to List")</a>
 </div>

@@ -1,10 +1,12 @@
 ﻿@model SmartUni.Models.ExamSubjectList
+@using SmartUni.Resources
+@inject Localizations SharedLocalizer
 
 @{
-    ViewData["Title"] = "Mark Registration";
+    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("Mark Registration");
 }
 
-<h2>Mark Registration</h2>
+    <h2>@SharedLocalizer.GetLocalizedHtmlString("Mark Registration")</h2>
 
 <form asp-action="ModifyMark">
     <div class="row">
@@ -28,13 +30,13 @@
         <thead>
             <tr>
                 <th class="col-md-5">
-                    Student Name
+                    @SharedLocalizer.GetLocalizedHtmlString("Student Name")
                 </th>
                 <th class="col-md-1">
-                    Mark
+                    @SharedLocalizer.GetLocalizedHtmlString("Mark")
                 </th>
                 <th class="col-md-1">
-                    Grade
+                    @SharedLocalizer.GetLocalizedHtmlString("Grade")
                 </th>
                 <th class="col-md-2"></th>
             </tr>
@@ -58,8 +60,8 @@
                             <input asp-for="@Model.ExamSubjectListing[count].Grade" class="form-control no-border" value="@item.Grade" disabled="disabled" />
                         </td>
                         <td>
-                            <a name="edit" id=@item.StudSubjectId onclick="enableEdit(@item.StudSubjectId)">Edit</a> |
-                            <a id=@item.StudSubjectId asp-action="Delete" asp-route-id="@item.ExamId" asp-route-studSubjetId="@item.StudSubjectId" >Delete</a>
+                            <a name="edit" id=@item.StudSubjectId onclick="enableEdit(@item.StudSubjectId)">@SharedLocalizer.GetLocalizedHtmlString("Edit")</a> |
+                            <a id=@item.StudSubjectId asp-action="Delete" asp-route-id="@item.ExamId" asp-route-studSubjetId="@item.StudSubjectId">@SharedLocalizer.GetLocalizedHtmlString("Delete")</a>
                         </td>
                     </tr>
                     count++;
@@ -68,17 +70,17 @@
             else
             {
                 <tr>
-                    <td colspan="5" class="text-align-center">- No data available -</td>
+                    <td colspan="5" class="text-align-center">@SharedLocalizer.GetLocalizedHtmlString("-No data available -")</td>
                 </tr>
             }
         </tbody>
     </table>
     <div class="form-group">
-        <input type="submit" value="Submit" class="btn btn-default" />
+        <input type="submit" value="@SharedLocalizer.GetLocalizedHtmlString("Submit")" class="btn btn-default" />
     </div>
 </form>
 <div>
-    <a asp-action="Index" asp-controller="Exams">Back</a>
+    <a asp-action="Index" asp-controller="Exams">@SharedLocalizer.GetLocalizedHtmlString("Back")</a>
 </div>
 
 
@@ -94,7 +96,7 @@
         $("#classId").on("change", function () {
              window.location.href = '@Url.Action("Index", "ExamSubjects")' + '?examId=' + $("#examId").val() + '&classId=' + $(this).val();
         });
-   
+
     </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

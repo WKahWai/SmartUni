@@ -124,6 +124,7 @@ namespace SmartUni.Controllers
             }
 
             var tutorType = await _context.TutorType
+                .Include(tt => tt.Tutor)
                 .FirstOrDefaultAsync(m => m.TutorTypeId == id);
             if (tutorType == null)
             {

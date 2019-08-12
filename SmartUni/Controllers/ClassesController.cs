@@ -148,7 +148,9 @@ namespace SmartUni.Controllers
             var @class = await _context.Class
                 .Include(@a => @a.StudyLevel)
                 .Include(@b => @b.Tutor)
+                .Include(@c => @c.Student)
                 .FirstOrDefaultAsync(m => m.ClassId.Equals(id));
+
             if (@class == null)
             {
                 return RedirectToAction("Index", "Errors");

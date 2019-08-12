@@ -124,6 +124,7 @@ namespace SmartUni.Controllers
             }
 
             var tutorStatus = await _context.TutorStatus
+                .Include(ts => ts.Tutor)
                 .FirstOrDefaultAsync(m => m.TutorStatusId == id);
             if (tutorStatus == null)
             {

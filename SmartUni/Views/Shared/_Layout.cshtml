@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using SmartUni.Resources
+@inject Localizations SharedLocalizer
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -53,12 +56,12 @@
 
             <div class="navbar-buttons navbar-header pull-right" role="navigation">
                 <ul class="nav ace-nav">
-                    <li class="grey"><a asp-action="SetLanguage" asp-controller="Home" asp-route-culture= "en-US" asp-route-returnUrl="@Url.RouteUrl(this.ViewContext.RouteData.Values)">English</a></li>
-                    <li class="grey"><a asp-action="SetLanguage" asp-controller="Home" asp-route-culture= "zh-CN" asp-route-returnUrl="@Url.RouteUrl(this.ViewContext.RouteData.Values)">简中</a></li>
-                 </ul>
-                </div>
-            </div><!-- /.navbar-container -->
-        </div>
+                    <li class="grey"><a asp-action="SetLanguage" asp-controller="Home" asp-route-culture="en-US" asp-route-returnUrl="@Url.RouteUrl(this.ViewContext.RouteData.Values)">English</a></li>
+                    <li class="grey"><a asp-action="SetLanguage" asp-controller="Home" asp-route-culture="zh-CN" asp-route-returnUrl="@Url.RouteUrl(this.ViewContext.RouteData.Values)">简中</a></li>
+                </ul>
+            </div>
+        </div><!-- /.navbar-container -->
+    </div>
 
     <partial name="_CookieConsentPartial" />
 
@@ -76,7 +79,7 @@
                 <li class="">
                     <a asp-area="" asp-controller="Home" asp-action="Index">
                         <i class="menu-icon fa fa-tachometer"></i>
-                        <span class="menu-text"> Dashboard </span>
+                        <span class="menu-text"> @SharedLocalizer.GetLocalizedHtmlString("Dashboard") </span>
                     </a>
 
                     <b class="arrow"></b>
@@ -87,7 +90,7 @@
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-desktop"></i>
                         <span class="menu-text">
-                            Tutor
+                            @SharedLocalizer.GetLocalizedHtmlString("Tutor")
                         </span>
 
                         <b class="arrow fa fa-angle-down"></b>
@@ -99,7 +102,7 @@
                         <li class="">
                             <a asp-area="" asp-controller="Tutors" asp-action="Create">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Add new tutor
+                                @SharedLocalizer.GetLocalizedHtmlString("Add new tutor")
                             </a>
 
                             <b class="arrow"></b>
@@ -108,7 +111,7 @@
                         <li class="">
                             <a asp-area="" asp-controller="Tutors" asp-action="Index">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Manage tutors
+                                @SharedLocalizer.GetLocalizedHtmlString("Manage tutors")
                             </a>
 
                             <b class="arrow"></b>
@@ -117,7 +120,7 @@
                         <li class="">
                             <a asp-area="" asp-controller="Tutors" asp-action="Settings">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Manage settings
+                                @SharedLocalizer.GetLocalizedHtmlString("Manage settings")
                             </a>
 
                             <b class="arrow"></b>
@@ -130,7 +133,7 @@
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-desktop"></i>
                         <span class="menu-text">
-                            Class
+                            @SharedLocalizer.GetLocalizedHtmlString("Class")
                         </span>
 
                         <b class="arrow fa fa-angle-down"></b>
@@ -142,7 +145,7 @@
                         <li class="">
                             <a asp-area="" asp-controller="Classes" asp-action="Create">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Add a new class
+                                @SharedLocalizer.GetLocalizedHtmlString("Add new class")
                             </a>
 
                             <b class="arrow"></b>
@@ -151,7 +154,7 @@
                         <li class="">
                             <a asp-area="" asp-controller="Classes" asp-action="Index">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Manage classes
+                                @SharedLocalizer.GetLocalizedHtmlString("Manage classes")
                             </a>
 
                             <b class="arrow"></b>
@@ -160,7 +163,7 @@
                         <li class="">
                             <a asp-area="" asp-controller="Classes" asp-action="Settings">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Manage settings
+                                @SharedLocalizer.GetLocalizedHtmlString("Manage settings")
                             </a>
 
                             <b class="arrow"></b>
@@ -173,7 +176,7 @@
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-desktop"></i>
                         <span class="menu-text">
-                            Subject
+                            @SharedLocalizer.GetLocalizedHtmlString("Subject")
                         </span>
 
                         <b class="arrow fa fa-angle-down"></b>
@@ -185,7 +188,7 @@
                         <li class="">
                             <a asp-area="" asp-controller="Subjects" asp-action="Create">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Add a new subject
+                                @SharedLocalizer.GetLocalizedHtmlString("Add new subject")
                             </a>
 
                             <b class="arrow"></b>
@@ -194,7 +197,7 @@
                         <li class="">
                             <a asp-area="" asp-controller="Subjects" asp-action="Index">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Manage subjects
+                                @SharedLocalizer.GetLocalizedHtmlString("Manage subjects")
                             </a>
 
                             <b class="arrow"></b>
@@ -207,7 +210,7 @@
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-desktop"></i>
                         <span class="menu-text">
-                            Student
+                            @SharedLocalizer.GetLocalizedHtmlString("Student")
                         </span>
 
                         <b class="arrow fa fa-angle-down"></b>
@@ -219,7 +222,7 @@
                         <li class="">
                             <a asp-area="" asp-controller="Students" asp-action="Create">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Add a new student
+                                @SharedLocalizer.GetLocalizedHtmlString("Add new student")
                             </a>
 
                             <b class="arrow"></b>
@@ -228,7 +231,7 @@
                         <li class="">
                             <a asp-area="" asp-controller="Students" asp-action="Index">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Manage students
+                                @SharedLocalizer.GetLocalizedHtmlString("Manage students")
                             </a>
 
                             <b class="arrow"></b>
@@ -237,7 +240,7 @@
                         <li class="">
                             <a asp-area="" asp-controller="Students" asp-action="Settings">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Manage settings
+                                @SharedLocalizer.GetLocalizedHtmlString("Manage settings")
                             </a>
 
                             <b class="arrow"></b>
@@ -250,7 +253,7 @@
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-desktop"></i>
                         <span class="menu-text">
-                            Examination
+                            @SharedLocalizer.GetLocalizedHtmlString("Examination")
                         </span>
 
                         <b class="arrow fa fa-angle-down"></b>
@@ -262,7 +265,7 @@
                         <li class="">
                             <a asp-area="" asp-controller="Exams" asp-action="Create">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Add a new exam
+                                @SharedLocalizer.GetLocalizedHtmlString("Add new exam")
                             </a>
 
                             <b class="arrow"></b>
@@ -271,7 +274,7 @@
                         <li class="">
                             <a asp-area="" asp-controller="Exams" asp-action="Index">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Manage exams
+                                @SharedLocalizer.GetLocalizedHtmlString("Manage exams")
                             </a>
 
                             <b class="arrow"></b>
@@ -291,8 +294,8 @@
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div>
-    </div><!-- /.main-content -->
-</div>
+        </div><!-- /.main-content -->
+    </div>
 
     <div class="footer">
         <div class="footer-inner">

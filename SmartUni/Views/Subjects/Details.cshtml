@@ -1,13 +1,15 @@
 ﻿@model SmartUni.Models.StudentSubjectList
+@using SmartUni.Resources
+@inject Localizations SharedLocalizer
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("Details");
 }
 
-<h2>Details</h2>
+    <h2>@SharedLocalizer.GetLocalizedHtmlString("Details")</h2>
 
 <div>
-    <h4>Subject</h4>
+    <h4>@SharedLocalizer.GetLocalizedHtmlString("Subject")</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -17,53 +19,53 @@
             @Html.DisplayFor(model => model.Subject.SubjectName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Subject.Tutor)
+            @Html.DisplayNameFor(model => model.Subject.TutorId)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Subject.Tutor.TutorId)
         </dd>
     </dl>
-        <table id="simple-table" class="table  table-bordered table-hover col-md-6">
-            <thead>
-                <tr>
-                    <th>
-                        Student ID
-                    </th>
-                    <th>
-                        Student Name
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @{ if (Model.StudentSubjectListing.Count() == 0)
-    {
+    <table id="simple-table" class="table  table-bordered table-hover col-md-6">
+        <thead>
+            <tr>
+                <th>
+                    @SharedLocalizer.GetLocalizedHtmlString("Student ID")
+                </th>
+                <th>
+                    @SharedLocalizer.GetLocalizedHtmlString("Student Name")
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ if (Model.StudentSubjectListing.Count() == 0)
+                {
+                    <tr>
+                                    <td colspan="3" class="text-align-center">@SharedLocalizer.GetLocalizedHtmlString("-No data available -")</td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var item in Model.StudentSubjectListing)
+                    {
                         <tr>
-                            <td colspan="3" class="text-align-center">- No data available -</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Student.StudId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Student.StudName)
+                            </td>
+                            <td>
+                            </td>
                         </tr>
-    }
-    else
-    {
-                        @foreach (var item in Model.StudentSubjectListing)
-{
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Student.StudId)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Student.StudName)
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-}
-        }
-    }
-                    </tbody>
-        </table>
-        <a asp-controller="StudentSubjects" asp-action="Create" asp-route-id="@Model.Subject.SubjectId"><input id="btnAdd" type="button" value="Add student" class="btn btn-default" /></a>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+    <a asp-controller="StudentSubjects" asp-action="Create" asp-route-id="@Model.Subject.SubjectId"><input id="btnAdd" type="button" value="@SharedLocalizer.GetLocalizedHtmlString("Add student")" class="btn btn-default" /></a>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Subject.SubjectId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.Subject.SubjectId">@SharedLocalizer.GetLocalizedHtmlString("Edit")</a> |
+    <a asp-action="Index">@SharedLocalizer.GetLocalizedHtmlString("Back to List")</a>
 </div>

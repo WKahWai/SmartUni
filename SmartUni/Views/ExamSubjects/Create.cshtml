@@ -1,16 +1,18 @@
 ﻿@model SmartUni.Models.ExamSubject
+@using SmartUni.Resources
+@inject Localizations SharedLocalizer
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("Add Students");
 }
 
-<h2>Create</h2>
+    <h2>@SharedLocalizer.GetLocalizedHtmlString("Add Students")</h2>
 
-<h4>ExamSubject</h4>
+    <h4>@SharedLocalizer.GetLocalizedHtmlString("Exam")</h4>
 <hr />
 <div class="row">
-    <div class="col-md-10">
-        <form asp-action="Create">
+    <form asp-action="Create">
+        <div class="col-md-10">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="col-md-6">
                 <div class="form-group">
@@ -27,13 +29,13 @@
                     <tr>
                         <th></th>
                         <th>
-                            Student ID
+                            @SharedLocalizer.GetLocalizedHtmlString("Student ID")
                         </th>
                         <th>
-                            Student Name
+                            @SharedLocalizer.GetLocalizedHtmlString("Student Name")
                         </th>
                         <th>
-                            Class
+                            @SharedLocalizer.GetLocalizedHtmlString("Class")
                         </th>
                     </tr>
                 </thead>
@@ -42,7 +44,7 @@
                         if (ViewBag.StudentSubjectList.Count == 0)
                         {
                             <tr>
-                                <td colspan="4" class="text-align-center">- No data available -</td>
+                                                    <td colspan="4" class="text-align-center">@SharedLocalizer.GetLocalizedHtmlString("-No data available -")</td>
                             </tr>
                         }
                         else
@@ -75,15 +77,15 @@
                     }
                 </tbody>
             </table>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
-    </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="@SharedLocalizer.GetLocalizedHtmlString("Create")" class="btn btn-default" />
+        </div>
+    </form>
 </div>
 
 <div>
-    <a asp-action="Index" asp-controller="Exams">Back</a>
+    <a asp-action="Index" asp-controller="Exams">@SharedLocalizer.GetLocalizedHtmlString("Back")</a>
 </div>
 
 @section Scripts {

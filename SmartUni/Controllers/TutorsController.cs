@@ -147,7 +147,10 @@ namespace SmartUni.Controllers
             var tutor = await _context.Tutor
                 .Include(t => t.TutorStatus)
                 .Include(t => t.TutorType)
+                .Include(c => c.Class)
+                .Include(s => s.Subject)
                 .FirstOrDefaultAsync(m => m.TutorId == id);
+
             if (tutor == null)
             {
                 return RedirectToAction("Index", "Errors");

@@ -124,6 +124,7 @@ namespace SmartUni.Controllers
             }
 
             var studyLevel = await _context.StudyLevel
+                .Include(sl => sl.Class)
                 .FirstOrDefaultAsync(m => m.StudyLevelId == id);
             if (studyLevel == null)
             {
