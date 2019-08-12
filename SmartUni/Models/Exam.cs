@@ -19,6 +19,8 @@ namespace SmartUni.Models
         public string ExamDesc { get; set; }
         [Required]
         [DisplayName("Year")]
+        [RegularExpression("^(2019|202[0-5])$",
+        ErrorMessage = "Year must be valid integer within the range 2019 and 2025.")]
         public int ExamYear { get; set; }
         [Required]
         [DisplayName("Term")]

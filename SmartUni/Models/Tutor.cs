@@ -25,6 +25,8 @@ namespace SmartUni.Models
         public string Email { get; set; }
         [Required]
         [DisplayName("Contact No.")]
+        [RegularExpression("^\\d{10}$|\\d{11}$",
+        ErrorMessage = "Contact No. must be within 10-11 digits.")]
         public int PhoneNo { get; set; }
         [Required]
         [DisplayName("Tutor Status")]

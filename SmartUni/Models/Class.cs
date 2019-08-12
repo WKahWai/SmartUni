@@ -24,6 +24,8 @@ namespace SmartUni.Models
         [DisplayName("Tutor")]
         public int TutorId { get; set; }
         [Required]
+        [RegularExpression("^(201[5-9]|202[0-5])$",
+        ErrorMessage = "Year must be valid integer within the range 2015 and 2025.")]
         public int Year { get; set; }
 
         public virtual StudyLevel StudyLevel { get; set; }

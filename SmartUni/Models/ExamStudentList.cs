@@ -18,6 +18,8 @@ namespace SmartUni.Models
         [DisplayName("Exam ID")]
         public int ExamId { get; set; }
         [DisplayName("Mark")]
+        [RegularExpression("^[0-9][0-9]?$|^100$",
+        ErrorMessage = "Mark must be within the range 0 and 100.")]
         public int? Mark { get; set; }
         [DisplayName("Grade")]
         public string Grade { get; set; }

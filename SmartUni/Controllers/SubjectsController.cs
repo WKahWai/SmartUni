@@ -30,7 +30,7 @@ namespace SmartUni.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             StudentSubjectList studentSubjectList = new StudentSubjectList();
@@ -49,7 +49,7 @@ namespace SmartUni.Controllers
 
             if (subject == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             return View(studentSubjectList);
@@ -84,13 +84,13 @@ namespace SmartUni.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var subject = await _context.Subject.FindAsync(id);
             if (subject == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
             ViewData["TutorId"] = new SelectList(_context.Tutor, "TutorId", "TutorName", subject.TutorId);
             return View(subject);
@@ -105,7 +105,7 @@ namespace SmartUni.Controllers
         {
             if (id != subject.SubjectId)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             if (ModelState.IsValid)
@@ -119,7 +119,7 @@ namespace SmartUni.Controllers
                 {
                     if (!SubjectExists(subject.SubjectId))
                     {
-                        return NotFound();
+                        return RedirectToAction("Index", "Errors");
                     }
                     else
                     {
@@ -137,7 +137,7 @@ namespace SmartUni.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             var subject = await _context.Subject
@@ -145,7 +145,7 @@ namespace SmartUni.Controllers
                 .FirstOrDefaultAsync(m => m.SubjectId == id);
             if (subject == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Errors");
             }
 
             return View(subject);
