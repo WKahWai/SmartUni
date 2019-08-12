@@ -22,7 +22,7 @@ namespace SmartUni.Controllers
         // GET: Classes
         public async Task<IActionResult> Index()
         {
-            var smartUniContext = _context.Class.Include(@a => @a.StudyLevel).Include(@b => @b.Tutor).Include(@c => @c.Student);
+            var smartUniContext = _context.Class.Include(@a => @a.StudyLevel).Include(@b => @b.Tutor).Include(@c => @c.Student).AsNoTracking();
             return View(await smartUniContext.ToListAsync());
         }
 
@@ -46,7 +46,7 @@ namespace SmartUni.Controllers
                 .FirstOrDefaultAsync(m => m.ClassId.Equals(id));
 
             var classId = new SqlParameter("@ClassId", id);
-            ViewData["StudentList"] = _context.ClassStudentList.FromSql("EXEC GetStudentsByClassId @ClassId", classId).ToList();
+            ViewData["StudentList"] = _context.ClassStudentList.FromSql("EXEC GetStudentsByClassId @ClassId", classId).AsNoTracking().ToList();
 
             if (@class == null)
             {
@@ -60,7 +60,7 @@ namespace SmartUni.Controllers
         public IActionResult Create()
         {
             ViewData["StudyLevelId"] = new SelectList(_context.StudyLevel, "StudyLevelId", "StudyLevelDesc");
-            ViewData["TutorId"] = new SelectList(_context.Tutor, "TutorId", "TutorName");
+            ViewData["TutorId"] = new SelectList(_context.Tutor.Where(x => !_context.Class.Any(c => c.TutorId == x.TutorId) && x.TutorType.TutorTypeDesc.Contains("Class")), "TutorId", "TutorName");
             return View();
         }
 

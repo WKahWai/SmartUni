@@ -12,6 +12,11 @@ using Microsoft.Extensions.DependencyInjection;
 using SmartUni.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.DataAnnotations;
+using System.Reflection;
+using SmartUni.Resources;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Options;
 
 namespace SmartUni
 {
@@ -37,12 +42,39 @@ namespace SmartUni
             services.AddDbContext<SmartUniContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddSingleton<Localizations>();
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+            services.Configure<RequestLocalizationOptions>(
+                options =>
+                {
+                    var supportedCultures = new List<CultureInfo>
+                        {
+                                new CultureInfo("en-US"),
+                                new CultureInfo("zh-CN")
+                        };
+
+                    options.DefaultRequestCulture = new RequestCulture("en-US");
+                    options.SupportedCultures = supportedCultures;
+                    options.SupportedUICultures = supportedCultures;
+
+                    options.RequestCultureProviders.Insert(0, new CookieRequestCultureProvider());
+                });
+
             services.AddMvc(options =>
             {
                 options.MaxModelValidationErrors = 50;
                 options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(
                     (_) => "The field is required.");
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            }).AddViewLocalization()
+              .AddDataAnnotationsLocalization(options =>
+              {
+                options.DataAnnotationLocalizerProvider = (type, factory) =>
+                {
+                    var assemblyName = new AssemblyName(typeof(SharedResource).GetTypeInfo().Assembly.FullName);
+                    return factory.Create("SharedResource", assemblyName.Name);
+                };
+              }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
         }
 
@@ -58,6 +90,9 @@ namespace SmartUni
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+            var locOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            app.UseRequestLocalization(locOptions.Value);
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

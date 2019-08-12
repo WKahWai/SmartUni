@@ -1,16 +1,18 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using SmartUni.Resources
+@inject Localizations SharedLocalizer
+@{
+    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("Home Page");
 }
 
 <div class="main-background">
     <div class="page-header text-align-center">
         <h1>
-            Welcome
+            @SharedLocalizer.GetLocalizedHtmlString("Welcome")
         </h1>
     </div><!-- /.page-header -->
     <div class="well">
-        <h4 class="green smaller lighter"><i class="ace-icon fa fa-arrow-circle-left"></i>&nbsp; Choose from the left panel to start</h4>
-        Kindly contact Kah Wai if you face any problem.
+        <h4 class="green smaller lighter"><i class="ace-icon fa fa-arrow-circle-left"></i>&nbsp; @SharedLocalizer.GetLocalizedHtmlString("Choose from the left panel to start")</h4>
+        @SharedLocalizer.GetLocalizedHtmlString("Kindly contact Kah Wai if you face any problem.")
     </div>
     <img class="logo-background" src="~/images/logo.png" />
 </div>

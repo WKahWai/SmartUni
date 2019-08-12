@@ -24,7 +24,7 @@ namespace SmartUni.Controllers
         {
             var smartUniContext = _context.Student.Include(s => s.Class).Include(s => s.StudyStatus);
             ViewData["ClassList"] = SetSelected.SetSelectedValue(new SelectList(_context.Class, "ClassId", "ClassDesc"), filter.ToString());
-            //var studList = _context.Student.FromSql("GetStudents").ToList();
+
             return View(await smartUniContext.Where(s => s.ClassId == filter).ToListAsync());
         }
 

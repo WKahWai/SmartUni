@@ -1,10 +1,11 @@
 ﻿@model SmartUni.Models.Tutor
-
+@using SmartUni.Resources
+@inject Localizations SharedLocalizer
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("Create");
 }
 
-<h2>Create</h2>
+    <h2>@SharedLocalizer.GetLocalizedHtmlString("Create")</h2>
 
 <h4>Tutor</h4>
 <hr />
@@ -29,11 +30,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="TutorStatusId" class="control-label"></label>
-                <select asp-for="TutorStatusId" class ="form-control ui-autocomplete-input" asp-items="ViewBag.TutorStatusId" ></select>
+                <select asp-for="TutorStatusId" class="form-control ui-autocomplete-input" asp-items="ViewBag.TutorStatusId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="TutorTypeId" class="control-label"></label>
-                <select asp-for="TutorTypeId" class ="form-control" asp-items="ViewBag.TutorTypeId"></select>
+                <select asp-for="TutorTypeId" class="form-control" asp-items="ViewBag.TutorTypeId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
