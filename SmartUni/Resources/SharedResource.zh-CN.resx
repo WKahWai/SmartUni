@@ -141,6 +141,9 @@
   <data name="Add new tutor" xml:space="preserve">
     <value>新增教师</value>
   </data>
+  <data name="Add Students" xml:space="preserve">
+    <value>新增学生</value>
+  </data>
   <data name="Are you sure you want to delete this ?" xml:space="preserve">
     <value>你确定要删除此资料吗？</value>
   </data>
@@ -266,6 +269,9 @@
   </data>
   <data name="Student" xml:space="preserve">
     <value>学生</value>
+  </data>
+  <data name="Student ID" xml:space="preserve">
+    <value>学生编号</value>
   </data>
   <data name="Student Name" xml:space="preserve">
     <value>学生名字</value>
