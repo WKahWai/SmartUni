@@ -32,6 +32,9 @@ namespace SmartUni.UITests.SeleniumHelpers
             IWebDriver driver;
             var driverToUse = ConfigurationHelper.Get<DriverToUse>("DriverToUse");
 
+            ChromeOptions options = new ChromeOptions();
+            options.AddArguments("--incognito");
+
             switch (driverToUse)
             {
                 case DriverToUse.InternetExplorer:
@@ -43,7 +46,7 @@ namespace SmartUni.UITests.SeleniumHelpers
                     driver.Manage().Window.Maximize();
                     break;
                 case DriverToUse.Chrome:
-                    driver = new ChromeDriver(".");
+                    driver = new ChromeDriver(".", options);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
