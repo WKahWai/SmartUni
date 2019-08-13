@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Configuration;
 using System.Diagnostics;
-using Selenium;
-using Selenium.Chrome;
-using Selenium.Firefox;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Remote;
 using Structura.GuiTests.Utilities;
