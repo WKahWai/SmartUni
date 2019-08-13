@@ -270,6 +270,9 @@
   <data name="Selected" xml:space="preserve">
     <value>已选择</value>
   </data>
+  <data name="Settings" xml:space="preserve">
+    <value>设定</value>
+  </data>
   <data name="Student" xml:space="preserve">
     <value>学生</value>
   </data>

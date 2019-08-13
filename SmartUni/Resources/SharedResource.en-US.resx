@@ -270,6 +270,9 @@
   <data name="Selected" xml:space="preserve">
     <value>Selected</value>
   </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
   <data name="Student" xml:space="preserve">
     <value>Student</value>
   </data>
