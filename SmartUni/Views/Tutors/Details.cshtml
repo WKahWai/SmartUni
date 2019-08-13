@@ -55,7 +55,7 @@
             @{ if (ViewBag.SubjectList == null)
                 {
                     <tr>
-                                    <td colspan="2" class="text-align-center">@SharedLocalizer.GetLocalizedHtmlString("-No data available -")</td>
+                                    <td colspan="2" class="text-align-center">@SharedLocalizer.GetLocalizedHtmlString("- No data available -")</td>
                     </tr>
                 }
                 else
@@ -70,7 +70,7 @@
                             </td>
 
                             <td>
-                                <a href="#">@subject.SubjectName</a>
+                                <a asp-action="Details" asp-controller="Subjects" asp-route-id="@subject.SubjectId">@subject.SubjectName</a>
                             </td>
                         </tr>
                     }

@@ -35,7 +35,7 @@
             @Html.DisplayNameFor(model => model.Class)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Class.ClassId)
+            @Html.DisplayFor(model => model.Class.ClassDesc)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.StudyStatus)
@@ -73,7 +73,7 @@
         else
         {
             <input type="submit" value="@SharedLocalizer.GetLocalizedHtmlString("Delete")" class="btn btn-default" />
-        } />
+        }
         <a asp-action="Index">@SharedLocalizer.GetLocalizedHtmlString("Back to List")</a>
     </form>
 </div>
