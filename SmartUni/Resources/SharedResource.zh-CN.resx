@@ -303,6 +303,9 @@
   <data name="Subject Name" xml:space="preserve">
     <value>科目名字</value>
   </data>
+  <data name="Subjects" xml:space="preserve">
+    <value>科目</value>
+  </data>
   <data name="Submit" xml:space="preserve">
     <value>提交</value>
   </data>
