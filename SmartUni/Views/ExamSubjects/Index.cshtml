@@ -18,11 +18,11 @@
             </div>
             <div class="form-group">
                 <label id="" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Class")</label>
-                <select id="classId" class="form-control" asp-items="ViewBag.ClassList"><option value="">Pick one</option></select>
+                <select id="classId" class="form-control" asp-items="ViewBag.ClassList"><option value="">@SharedLocalizer.GetLocalizedHtmlString("Pick one")</option></select>
             </div>
             <div class="form-group">
                 <label id="" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Subject")</label>
-                <select id="subjectId" class="form-control" asp-items="ViewBag.SubjectList"><option value="">Pick one</option></select>
+                <select id="subjectId" class="form-control" asp-items="ViewBag.SubjectList"><option value="">@SharedLocalizer.GetLocalizedHtmlString("Pick one")</option></select>
             </div>
         </div>
     </div>
