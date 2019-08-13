@@ -13,15 +13,15 @@
         <div class="col-md-4">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label class="control-label">Exam</label>
+                <label class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Exam")</label>
                 <select asp-for="ExamId" id="examId" class="form-control" asp-items="ViewBag.ExamList"></select>
             </div>
             <div class="form-group">
-                <label id="" class="control-label">Class</label>
+                <label id="" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Class")</label>
                 <select id="classId" class="form-control" asp-items="ViewBag.ClassList"><option value="">Pick one</option></select>
             </div>
             <div class="form-group">
-                <label id="" class="control-label">Subject</label>
+                <label id="" class="control-label">@SharedLocalizer.GetLocalizedHtmlString("Subject")</label>
                 <select id="subjectId" class="form-control" asp-items="ViewBag.SubjectList"><option value="">Pick one</option></select>
             </div>
         </div>
