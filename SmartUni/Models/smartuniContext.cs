@@ -1,7 +1,5 @@
-﻿using System;
-using System.Configuration;
+﻿using System.Configuration;
 using Microsoft.EntityFrameworkCore;
-using EntityFrameworkCore.Extensions;
 
 namespace SmartUni.Models
 {
@@ -55,7 +53,7 @@ namespace SmartUni.Models
                 entity.Property(e => e.ClassDesc)
                     .IsRequired()
                     .HasMaxLength(100)
-                    .IsUnicode(false);
+                    .IsUnicode(true);
 
                 entity.Property(e => e.TutorId)
                     .IsRequired()
@@ -80,12 +78,12 @@ namespace SmartUni.Models
                 entity.Property(e => e.ExamDesc)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .IsUnicode(true);
 
                 entity.Property(e => e.ExamTerm)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .IsUnicode(true);
             });
 
             modelBuilder.Entity<ExamSubject>(entity =>
@@ -138,7 +136,7 @@ namespace SmartUni.Models
                 entity.Property(e => e.StudName)
                     .IsRequired()
                     .HasMaxLength(200)
-                    .IsUnicode(false);
+                    .IsUnicode(true);
 
                 entity.HasOne(d => d.Class)
                     .WithMany(p => p.Student)
@@ -184,7 +182,7 @@ namespace SmartUni.Models
                 entity.Property(e => e.StudyLevelDesc)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .IsUnicode(true);
             });
 
             modelBuilder.Entity<StudyStatus>(entity =>
@@ -192,7 +190,7 @@ namespace SmartUni.Models
                 entity.Property(e => e.StudyStatusDesc)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .IsUnicode(true);
             });
 
             modelBuilder.Entity<Subject>(entity =>
@@ -203,7 +201,7 @@ namespace SmartUni.Models
                 entity.Property(e => e.SubjectName)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .IsUnicode(true);
 
                 entity.Property(e => e.TutorId)
                     .IsRequired()
@@ -239,7 +237,7 @@ namespace SmartUni.Models
                 entity.Property(e => e.TutorName)
                     .IsRequired()
                     .HasMaxLength(200)
-                    .IsUnicode(false);
+                    .IsUnicode(true);
 
                 entity.HasOne(d => d.TutorStatus)
                     .WithMany(p => p.Tutor)
@@ -252,14 +250,14 @@ namespace SmartUni.Models
                     .HasForeignKey(d => d.TutorTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_TutorType_Tutor");
-                });
+            });
 
             modelBuilder.Entity<TutorStatus>(entity =>
             {
                 entity.Property(e => e.TutorStatusDesc)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .IsUnicode(true);
             });
 
             modelBuilder.Entity<TutorType>(entity =>
@@ -267,7 +265,7 @@ namespace SmartUni.Models
                 entity.Property(e => e.TutorTypeDesc)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .IsUnicode(true);
             });
         }
     }
