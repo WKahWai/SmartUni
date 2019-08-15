@@ -55,7 +55,7 @@ namespace SmartUni.Models
                 entity.Property(e => e.ClassDesc)
                     .IsRequired()
                     .HasMaxLength(100)
-                    .IsUnicode(false);
+                    .IsUnicode(true);
 
                 entity.Property(e => e.TutorId)
                     .IsRequired()
