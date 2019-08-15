@@ -1,5 +1,6 @@
 using System;
 using OpenQA.Selenium;
+using SmartUni.UITests.PageObjects;
 using SmartUni.UITests.SeleniumHelpers;
 using Xunit;
 
@@ -7,8 +8,8 @@ namespace SmartUni.UITests
 {
     public class Dashboard
     {
-        private readonly string page_url;
-        private readonly IWebDriver driver;
+        private string page_url;
+        private IWebDriver driver;
         
         public Dashboard()
         {
@@ -18,9 +19,11 @@ namespace SmartUni.UITests
         }
 
         [Fact]
-        public void Search_For_DotNet_Core()
+        public void ShouldDisplayHeaderBar()
         {
-            Assert.True(driver.FindElement(By.ClassName("navbar-brand")).Displayed);
+            Assert.True(new HeaderBar(driver).GetLogoTitle());
         }
+
+
     }
 }
