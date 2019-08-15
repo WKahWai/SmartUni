@@ -1,5 +1,6 @@
 using System;
 using OpenQA.Selenium;
+using SmartUni.UITests.PageObjects;
 using SmartUni.UITests.SeleniumHelpers;
 using Xunit;
 
@@ -18,9 +19,9 @@ namespace SmartUni.UITests
         }
 
         [Fact]
-        public void Search_For_DotNet_Core()
+        public void GetLogoTitle()
         {
-            Assert.True(driver.FindElement(By.ClassName("navbar-brand")).Displayed);
+            Assert.True(new HeaderBar(driver).GetLogoTitle());
         }
     }
 }

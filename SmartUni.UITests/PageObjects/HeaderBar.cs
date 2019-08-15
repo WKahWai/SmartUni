@@ -1,10 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using OpenQA.Selenium;
 
 namespace SmartUni.UITests.PageObjects
 {
-    class HeaderBar
+    public class HeaderBar
     {
+        private IWebDriver _driver;
+
+        public HeaderBar(IWebDriver driver)
+        {
+            _driver = driver;
+        }
+
+        public bool GetLogoTitle()
+        {
+            return _driver.FindElement(By.ClassName("navbar-brand")).Displayed;
+        }
     }
 }
