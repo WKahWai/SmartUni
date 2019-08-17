@@ -153,12 +153,12 @@ namespace SmartUni.Controllers
                     if( item.Mark >= 0)
                     {
                         if (item.Mark > 100) item.Grade = "Error";
-                        else if (item.Mark > 90) item.Grade = "A+";
-                        else if (item.Mark > 80) item.Grade = "A";
-                        else if (item.Mark > 70) item.Grade = "B+";
-                        else if (item.Mark > 60) item.Grade = "B";
-                        else if (item.Mark > 50) item.Grade = "C+";
-                        else if (item.Mark > 30) item.Grade = "C";
+                        else if (item.Mark >= 90) item.Grade = "A+";
+                        else if (item.Mark >= 80) item.Grade = "A";
+                        else if (item.Mark >= 70) item.Grade = "B+";
+                        else if (item.Mark >= 60) item.Grade = "B";
+                        else if (item.Mark >= 50) item.Grade = "C+";
+                        else if (item.Mark >= 30) item.Grade = "C";
                         else item.Grade = "F";
                         _context.Update(item);
                     }
