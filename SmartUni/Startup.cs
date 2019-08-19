@@ -54,7 +54,7 @@ namespace SmartUni
                                 new CultureInfo("zh-CN")
                         };
 
-                    options.DefaultRequestCulture = new RequestCulture("en-US");
+                    options.DefaultRequestCulture = new RequestCulture("zh-CN");
                     options.SupportedCultures = supportedCultures;
                     options.SupportedUICultures = supportedCultures;
 
