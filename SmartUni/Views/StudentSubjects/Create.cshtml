@@ -23,6 +23,13 @@
                     <label asp-for="SubjectId" class="control-label"></label>
                     <select asp-for="SubjectId" class="form-control" asp-items="ViewBag.Subject"></select>
                 </div>
+                @if (ViewBag.Error != null)
+                {
+                    var error = ViewData["Error"] as string;
+                    <span>
+                        @SharedLocalizer.GetLocalizedHtmlString(error)
+                    </span><br />
+                }
                 <div class="form-group">
                     <input type="submit" value="@SharedLocalizer.GetLocalizedHtmlString("Create")" class="btn btn-default" />
                 </div>

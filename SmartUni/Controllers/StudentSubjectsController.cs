@@ -64,9 +64,18 @@ namespace SmartUni.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(studentSubject);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Details", "Subjects", new { id = studentSubject.SubjectId });
+                if(_context.StudentSubject.Where(x => x.StudId == studentSubject.StudId && x.SubjectId == studentSubject.SubjectId).CountAsync().Result == 0)
+                {
+                    _context.Add(studentSubject);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Details", "Subjects", new { id = studentSubject.SubjectId });
+                } else
+                {
+                    ViewData["StudId"] = new SelectList(_context.Student, "StudId", "StudId");
+                    ViewData["Subject"] = SetSelected.SetSelectedValue(new SelectList(_context.Subject, "SubjectId", "SubjectName"), studentSubject.SubjectId.ToString());
+                    ViewData["Error"] = "Student has registered the same subject.";
+                    return View();
+                }
             }
             return RedirectToAction("Details", "Subjects", new { id = studentSubject.SubjectId });
         }

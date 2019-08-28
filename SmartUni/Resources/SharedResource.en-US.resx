@@ -276,6 +276,9 @@
   <data name="Student" xml:space="preserve">
     <value>Student</value>
   </data>
+  <data name="Student has registered the same subject." xml:space="preserve">
+    <value>Student has registered the same subject.</value>
+  </data>
   <data name="Student ID" xml:space="preserve">
     <value>Student ID</value>
   </data>

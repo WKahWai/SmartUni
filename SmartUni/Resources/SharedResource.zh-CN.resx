@@ -276,6 +276,9 @@
   <data name="Student" xml:space="preserve">
     <value>学生</value>
   </data>
+  <data name="Student has registered the same subject." xml:space="preserve">
+    <value>此学生已经报名了相同的科目。</value>
+  </data>
   <data name="Student ID" xml:space="preserve">
     <value>学生编号</value>
   </data>
